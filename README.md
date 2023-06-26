@@ -64,6 +64,11 @@ $ vim ./app/administrator/configs/config.yaml
 $ kratos run
 ```
 
+5.如果使用docker部署,请更改Dockerfile的启动配置文件 config-dev.yaml 并更改Makefile中的docker命令为自己的配置
+```
+$ make docker
+```
+
 ##### [管理后台前端](https://github.com/ZQCard/kbk-frontend)
 1.安装依赖
 ```
