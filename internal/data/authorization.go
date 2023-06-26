@@ -3,9 +3,9 @@ package data
 import (
 	"context"
 
-	authorizationV1 "github.com/ZQCard/kratos-base-kit/kbk-authorization/api/authorization/v1"
-	v1 "github.com/ZQCard/kratos-base-kit/kbk-bff-admin/api/admin/v1"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/internal/conf"
+	authorizationV1 "github.com/ZQCard/kbk-authorization/api/authorization/v1"
+	v1 "github.com/ZQCard/kbk-bff-admin/api/admin/v1"
+	"github.com/ZQCard/kbk-bff-admin/internal/conf"
 	"github.com/go-kratos/kratos/v2/log"
 	"golang.org/x/sync/singleflight"
 	"google.golang.org/protobuf/types/known/emptypb"

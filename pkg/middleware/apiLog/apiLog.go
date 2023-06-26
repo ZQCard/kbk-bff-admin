@@ -17,9 +17,9 @@ import (
 	"github.com/go-redis/redis"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	authorizationV1 "github.com/ZQCard/kratos-base-kit/kbk-authorization/api/authorization/v1"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/pkg/utils/redisHelper"
-	logV1 "github.com/ZQCard/kratos-base-kit/kbk-log/api/log/v1"
+	authorizationV1 "github.com/ZQCard/kbk-authorization/api/authorization/v1"
+	"github.com/ZQCard/kbk-bff-admin/pkg/utils/redisHelper"
+	logV1 "github.com/ZQCard/kbk-log/api/log/v1"
 )
 
 // Redacter defines how to log an object

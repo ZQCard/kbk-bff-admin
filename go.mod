@@ -1,4 +1,4 @@
-module github.com/ZQCard/kratos-base-kit/kbk-bff-admin
+module github.com/ZQCard/kbk-bff-admin
 
 go 1.20
 
@@ -80,11 +80,11 @@ require (
 )
 
 require (
-	github.com/ZQCard/kratos-base-kit/kbk-administrator v1.0.0
-	github.com/ZQCard/kratos-base-kit/kbk-authorization v1.0.0
-	github.com/ZQCard/kratos-base-kit/kbk-file v1.0.0
-	github.com/ZQCard/kratos-base-kit/kbk-log v1.0.0
-	github.com/ZQCard/kratos-base-kit/kbk-ai v1.0.0
+	github.com/ZQCard/kbk-administrator v1.0.0
+	github.com/ZQCard/kbk-ai v1.0.0
+	github.com/ZQCard/kbk-authorization v1.0.0
+	github.com/ZQCard/kbk-file v1.0.0
+	github.com/ZQCard/kbk-log v1.0.0
 )
 
 require (
@@ -93,9 +93,14 @@ require (
 )
 
 replace (
-	github.com/ZQCard/kratos-base-kit/kbk-administrator => ../kbk-administrator
-	github.com/ZQCard/kratos-base-kit/kbk-authorization => ../kbk-authorization
-	github.com/ZQCard/kratos-base-kit/kbk-file => ../kbk-file
-	github.com/ZQCard/kratos-base-kit/kbk-log => ../kbk-log
-	github.com/ZQCard/kratos-base-kit/kbk-ai => ../kbk-ai
+	github.com/ZQCard/kbk-administrator => github.com/ZQCard/kbk-administrator v0.1.1
+	// github.com/ZQCard/kbk-log => ../kbk-log
+	github.com/ZQCard/kbk-ai => github.com/ZQCard/kbk-ai v0.1.1
+	// github.com/ZQCard/kbk-administrator => ../kbk-administrator
+	github.com/ZQCard/kbk-authorization => github.com/ZQCard/kbk-authorization v0.1.1
+	// github.com/ZQCard/kbk-authorization => ../kbk-authorization
+	github.com/ZQCard/kbk-file => github.com/ZQCard/kbk-file v0.1.1
+	// github.com/ZQCard/kbk-file => ../kbk-file
+	github.com/ZQCard/kbk-log => github.com/ZQCard/kbk-log v0.1.1
+// github.com/ZQCard/kbk-ai => ../kbk-ai
 )

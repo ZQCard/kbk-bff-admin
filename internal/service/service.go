@@ -1,8 +1,8 @@
 package service
 
 import (
-	v1 "github.com/ZQCard/kratos-base-kit/kbk-bff-admin/api/admin/v1"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/internal/data"
+	v1 "github.com/ZQCard/kbk-bff-admin/api/admin/v1"
+	"github.com/ZQCard/kbk-bff-admin/internal/data"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/google/wire"
 )

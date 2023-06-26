@@ -13,7 +13,7 @@ import "google/protobuf/empty.proto";
 
 import "google/protobuf/wrappers.proto";
 
-option go_package = "/github.com/ZQCard/kratos-base-kit/kbk-bff-admin/api/v1/admin";
+option go_package = "github.com/ZQCard/kbk-bff-admin/api/v1/admin";
 
 option (openapi.v3.document) = {
     info: {

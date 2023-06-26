@@ -3,9 +3,9 @@ package data
 import (
 	"context"
 
-	administratorV1 "github.com/ZQCard/kratos-base-kit/kbk-administrator/api/administrator/v1"
-	v1 "github.com/ZQCard/kratos-base-kit/kbk-bff-admin/api/admin/v1"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/internal/conf"
+	administratorV1 "github.com/ZQCard/kbk-administrator/api/administrator/v1"
+	v1 "github.com/ZQCard/kbk-bff-admin/api/admin/v1"
+	"github.com/ZQCard/kbk-bff-admin/internal/conf"
 	"github.com/golang-jwt/jwt/v4"
 
 	"github.com/go-kratos/kratos/v2/errors"

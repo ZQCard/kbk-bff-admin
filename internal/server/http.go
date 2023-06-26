@@ -17,15 +17,15 @@ import (
 	"github.com/go-kratos/kratos/v2/transport/http"
 	"github.com/go-kratos/swagger-api/openapiv2"
 
-	authorizationV1 "github.com/ZQCard/kratos-base-kit/kbk-authorization/api/authorization/v1"
-	adminV1 "github.com/ZQCard/kratos-base-kit/kbk-bff-admin/api/admin/v1"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/internal/conf"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/internal/service"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/pkg/middleware/apiLog"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/pkg/middleware/auth"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/pkg/middleware/requestInfo"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/pkg/middleware/userInfo"
-	logV1 "github.com/ZQCard/kratos-base-kit/kbk-log/api/log/v1"
+	authorizationV1 "github.com/ZQCard/kbk-authorization/api/authorization/v1"
+	adminV1 "github.com/ZQCard/kbk-bff-admin/api/admin/v1"
+	"github.com/ZQCard/kbk-bff-admin/internal/conf"
+	"github.com/ZQCard/kbk-bff-admin/internal/service"
+	"github.com/ZQCard/kbk-bff-admin/pkg/middleware/apiLog"
+	"github.com/ZQCard/kbk-bff-admin/pkg/middleware/auth"
+	"github.com/ZQCard/kbk-bff-admin/pkg/middleware/requestInfo"
+	"github.com/ZQCard/kbk-bff-admin/pkg/middleware/userInfo"
+	logV1 "github.com/ZQCard/kbk-log/api/log/v1"
 )
 
 func NewWhiteListMatcher() selector.MatchFunc {

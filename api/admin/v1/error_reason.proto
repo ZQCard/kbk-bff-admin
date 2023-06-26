@@ -4,7 +4,7 @@ package admin.v1;
 
 import "errors/errors.proto";
 
-option go_package = "/github.com/ZQCard/kratos-base-kit/kbk-bff-admin/api/v1/admin";
+option go_package = "github.com/ZQCard/kbk-bff-admin/api/v1/admin";
 
 enum ErrorReason {
   option (errors.default_code) = 500;

@@ -3,9 +3,9 @@ package data
 import (
 	"context"
 
-	v1 "github.com/ZQCard/kratos-base-kit/kbk-bff-admin/api/admin/v1"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/internal/conf"
-	fileV1 "github.com/ZQCard/kratos-base-kit/kbk-file/api/file/v1"
+	v1 "github.com/ZQCard/kbk-bff-admin/api/admin/v1"
+	"github.com/ZQCard/kbk-bff-admin/internal/conf"
+	fileV1 "github.com/ZQCard/kbk-file/api/file/v1"
 	"golang.org/x/sync/singleflight"
 	"google.golang.org/protobuf/types/known/emptypb"
 

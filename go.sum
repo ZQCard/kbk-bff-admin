@@ -38,6 +38,16 @@ github.com/Shopify/sarama v1.38.1 h1:lqqPUPQZ7zPqYlWpTh+LQ9bhYNu2xJL6k1SJN4WVe2A
 github.com/Shopify/sarama v1.38.1/go.mod h1:iwv9a67Ha8VNa+TifujYoWGxWnu2kNVAQdSdZ4X2o5g=
 github.com/Shopify/toxiproxy/v2 v2.5.0 h1:i4LPT+qrSlKNtQf5QliVjdP08GyAH8+BUIc9gT0eahc=
 github.com/StackExchange/wmi v1.2.1/go.mod h1:rcmrprowKIVzvc+NUiLncP2uuArMWLCbu9SBzvHz7e8=
+github.com/ZQCard/kbk-administrator v0.1.1 h1:Wul7FuTxIK4feqjGTPaC89aViupSS5kwuJpQwtF4XpE=
+github.com/ZQCard/kbk-administrator v0.1.1/go.mod h1:vbUGcmHu891UNloFWqFRh3JPZnnvAPlxlUzsjDIwC3s=
+github.com/ZQCard/kbk-ai v0.1.1 h1:x4QztBirSVPiIBazwh2jmqH17VLLJDtmVqCk08rnKhI=
+github.com/ZQCard/kbk-ai v0.1.1/go.mod h1:uoUOT+noiNWxv/8apQg4a41XPZbR4hqz6NpiKtKqTRk=
+github.com/ZQCard/kbk-authorization v0.1.1 h1:DU8ZCYIliSA3ZmLn556tbJrlH4bwjf6egI8m14pO7bE=
+github.com/ZQCard/kbk-authorization v0.1.1/go.mod h1:DBC+f+QVeHgCkSLOygJFgwOsUUS7DQaIaKLLvz4bQ8A=
+github.com/ZQCard/kbk-file v0.1.1 h1:6d6+XmvoJG3uhP4KjXzEStzsWpAemerONGS1Xn9QRIU=
+github.com/ZQCard/kbk-file v0.1.1/go.mod h1:ZQi4BR6u1Wrs2Mgvro7c5SyBov25xw3/JVFCNwFIFcw=
+github.com/ZQCard/kbk-log v0.1.1 h1:K1M/OTv0pQBI8bv6cM4VZT0bUWqd+4vTNEjWRaLE+34=
+github.com/ZQCard/kbk-log v0.1.1/go.mod h1:qafQxeaNNplJW/bA0Nxw3VtDMi2kMz0q0wyoL5EFayQ=
 github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc/go.mod h1:LOuyumcjzFXgccqObfd/Ljyb9UuFJ6TxHnclSeseNhc=
 github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751/go.mod h1:LOuyumcjzFXgccqObfd/Ljyb9UuFJ6TxHnclSeseNhc=
 github.com/alecthomas/units v0.0.0-20151022065526-2efee857e7cf/go.mod h1:ybxpYRFXyAe+OPACYpWeL0wqObRcbAqCMya13uyzqw0=

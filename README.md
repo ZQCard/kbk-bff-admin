@@ -1,13 +1,7 @@
 # Kratos Base Project
 
-本项目基于 [kratos框架](https://github.com/go-kratos/kratos) 搭建基础微服务项目，开发各种独立服务,bff层作为入口，组合各个服务。
+本项目基于 [kratos框架](https://github.com/go-kratos/kratos) 搭建基础微服务项目，开发各种独立服务,bff层作为入口，整合各个服务。
 
-[项目模板地址](https://github.com/ZQCard/kratos-base-layout)
-[管理后台前端地址](https://github.com/ZQCard/kratos-base-project-frontend)
-[管理员服务地址](https://github.com/ZQCard/kratos-base-project-frontend)
-[权限服务地址](https://github.com/ZQCard/kratos-base-project-frontend)
-[文件服务地址](https://github.com/ZQCard/kratos-base-project-frontend)
-[日志服务地址](https://github.com/ZQCard/kratos-base-project-frontend)
 
 #### 管理后台服务
 - [x]  管理后台
@@ -23,13 +17,7 @@
 - [x]  api管理
 
 #### 文件服务
-- [x]  文件上传(后端直传)
 - [x]  前端直传(获取token)
-
-#### 通知服务
-- [ ] 短信服务
-- [ ] 邮件服务
-
 
 #### 运行方式
 
@@ -48,25 +36,25 @@ orm: GORM
 
 
 
-### 安装
+### 运行(以权限服务为例)
 ##### 数据库
 1.导入sql
 ```
-文件位于docs/initSql
+文件位于initSql/kbk-authorization.sql
 ```
 
 ##### 后端
 1.下载
 ```
-$ go clone github.com/ZQCard/kratos-base-project
+$ go clone git@github.com:ZQCard/kbk-authorization.git
 ```
 
 2.安装依赖
 ```
-$ cd kratos-base-project && go mod tidy
+$ cd kbk-authorization && go mod tidy
 ```
 
-3.设置配置 以管理员服务为例, 配置文件位于configs/  初始化sql文件位于 docs/initSql
+3.设置配置 以管理员服务为例, 配置文件位于configs/
 ```
 $ vim ./app/administrator/configs/config.yaml
 ```
@@ -76,7 +64,7 @@ $ vim ./app/administrator/configs/config.yaml
 $ kratos run
 ```
 
-##### 前端
+##### [管理后台前端](https://github.com/ZQCard/kbk-frontend)
 1.安装依赖
 ```
 $ cd web && npm install

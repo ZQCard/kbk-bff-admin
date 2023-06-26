@@ -11,12 +11,12 @@ import (
 	"github.com/google/wire"
 	etcdclient "go.etcd.io/etcd/client/v3"
 
-	administratorV1 "github.com/ZQCard/kratos-base-kit/kbk-administrator/api/administrator/v1"
-	aiV1 "github.com/ZQCard/kratos-base-kit/kbk-ai/api/ai/v1"
-	authorizationV1 "github.com/ZQCard/kratos-base-kit/kbk-authorization/api/authorization/v1"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/internal/conf"
-	fileV1 "github.com/ZQCard/kratos-base-kit/kbk-file/api/file/v1"
-	logV1 "github.com/ZQCard/kratos-base-kit/kbk-log/api/log/v1"
+	administratorV1 "github.com/ZQCard/kbk-administrator/api/administrator/v1"
+	aiV1 "github.com/ZQCard/kbk-ai/api/ai/v1"
+	authorizationV1 "github.com/ZQCard/kbk-authorization/api/authorization/v1"
+	"github.com/ZQCard/kbk-bff-admin/internal/conf"
+	fileV1 "github.com/ZQCard/kbk-file/api/file/v1"
+	logV1 "github.com/ZQCard/kbk-log/api/log/v1"
 )
 
 var auth *conf.Auth

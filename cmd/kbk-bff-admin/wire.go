@@ -6,10 +6,10 @@
 package main
 
 import (
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/internal/conf"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/internal/data"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/internal/server"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/internal/service"
+	"github.com/ZQCard/kbk-bff-admin/internal/conf"
+	"github.com/ZQCard/kbk-bff-admin/internal/data"
+	"github.com/ZQCard/kbk-bff-admin/internal/server"
+	"github.com/ZQCard/kbk-bff-admin/internal/service"
 
 	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/log"

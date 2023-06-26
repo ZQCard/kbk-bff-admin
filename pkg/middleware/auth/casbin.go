@@ -10,8 +10,8 @@ import (
 	"github.com/go-kratos/kratos/v2/transport/http"
 	jwt2 "github.com/golang-jwt/jwt/v4"
 
-	authorizationV1 "github.com/ZQCard/kratos-base-kit/kbk-authorization/api/authorization/v1"
-	v1 "github.com/ZQCard/kratos-base-kit/kbk-bff-admin/api/admin/v1"
+	authorizationV1 "github.com/ZQCard/kbk-authorization/api/authorization/v1"
+	v1 "github.com/ZQCard/kbk-bff-admin/api/admin/v1"
 )
 
 const CabinObj = "role"

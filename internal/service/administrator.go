@@ -9,9 +9,9 @@ import (
 	"github.com/go-kratos/kratos/v2/transport"
 	"github.com/go-kratos/kratos/v2/transport/http"
 
-	administratorV1 "github.com/ZQCard/kratos-base-kit/kbk-administrator/api/administrator/v1"
-	v1 "github.com/ZQCard/kratos-base-kit/kbk-bff-admin/api/admin/v1"
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/pkg/utils/timeHelper"
+	administratorV1 "github.com/ZQCard/kbk-administrator/api/administrator/v1"
+	v1 "github.com/ZQCard/kbk-bff-admin/api/admin/v1"
+	"github.com/ZQCard/kbk-bff-admin/pkg/utils/timeHelper"
 )
 
 func (s *AdminInterface) Login(ctx context.Context, req *v1.LoginReq) (*v1.LoginRes, error) {

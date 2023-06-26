@@ -4,7 +4,7 @@ import (
 	"flag"
 	"os"
 
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/pkg/utils/loggerHelper"
+	"github.com/ZQCard/kbk-bff-admin/pkg/utils/loggerHelper"
 	"github.com/go-kratos/kratos/v2/registry"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
@@ -22,7 +22,7 @@ import (
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"
 	_ "go.uber.org/automaxprocs"
 
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/internal/conf"
+	"github.com/ZQCard/kbk-bff-admin/internal/conf"
 )
 
 // go build -ldflags "-X main.Version=x.y.z"

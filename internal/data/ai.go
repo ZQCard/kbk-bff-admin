@@ -3,7 +3,7 @@ package data
 import (
 	"context"
 
-	"github.com/ZQCard/kratos-base-kit/kbk-bff-admin/internal/conf"
+	"github.com/ZQCard/kbk-bff-admin/internal/conf"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/metadata"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
@@ -14,8 +14,8 @@ import (
 	tracesdk "go.opentelemetry.io/otel/sdk/trace"
 	"golang.org/x/sync/singleflight"
 
-	aiV1 "github.com/ZQCard/kratos-base-kit/kbk-ai/api/ai/v1"
-	v1 "github.com/ZQCard/kratos-base-kit/kbk-bff-admin/api/admin/v1"
+	aiV1 "github.com/ZQCard/kbk-ai/api/ai/v1"
+	v1 "github.com/ZQCard/kbk-bff-admin/api/admin/v1"
 )
 
 func NewAIClient(sr *conf.Endpoint, r registry.Discovery, tp *tracesdk.TracerProvider) aiV1.AIServiceClient {
