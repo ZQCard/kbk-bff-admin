@@ -1,0 +1,34 @@
+service:
+  name: adminInterface
+  version: v1
+env:
+  mode: dev
+server:
+  http:
+    addr: 0.0.0.0:8000
+    timeout: 10s
+  grpc:
+    addr: 0.0.0.0:9000
+    timeout: 10s
+trace:
+  endpoint: http://127.0.0.1:14268/api/traces
+etcd:
+  address: 127.0.0.1:2379
+auth:
+  service_key: "kratos-base-project-admin-service-key"
+  api_key: "kratos-base-project-admin-api-key"
+  api_key_expire: "86400"
+data:
+  redis:
+    addr: "127.0.0.1:6379"
+    password: ""
+    read_timeout: "0.2s"
+    write_timeout: "0.2s"
+endpoint:
+  time_out: "10s"
+  administrator: discovery:///kbk.administrator.service
+  authorization: discovery:///kbk.authorization.service
+  log: discovery:///kbk.log.service
+  file: discovery:///kbk.file.service
+  ai: discovery:///kbk.ai.service
+  notice: discovery:///kbk.notice.service

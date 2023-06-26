@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package admin.v1;
+
+import "errors/errors.proto";
+
+option go_package = "/github.com/ZQCard/kratos-base-kit/kbk-bff-admin/api/v1/admin";
+
+enum ErrorReason {
+  option (errors.default_code) = 500;
+  BAD_REQUEST = 0 [(errors.code) = 400];
+  UNAUTHORIZED = 1[(errors.code) = 401];
+  FORBIDDEN = 2 [(errors.code) = 403];
+  SYSTEM_ERROR = 3 [(errors.code) = 500];
+}
+

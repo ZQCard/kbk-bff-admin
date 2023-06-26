@@ -1,0 +1,1555 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: kbk管理后台bff
+    description: kbk管理后台bff
+    contact:
+        name: qi.zhou
+        email: card.zhouqi@gmail.com
+    version: 0.0.1
+paths:
+    /admin/v1/administrator:
+        get:
+            tags:
+                - Admin
+            description: 管理员详情
+            operationId: Admin_GetAdministrator
+            parameters:
+                - name: id
+                  in: query
+                  description: 主键id
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.Administrator'
+        put:
+            tags:
+                - Admin
+            description: 管理员更新
+            operationId: Admin_UpdateAdministrator
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.UpdateAdministratorReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+        post:
+            tags:
+                - Admin
+            description: 管理员创建
+            operationId: Admin_CreateAdministrator
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.CreateAdministratorReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.Administrator'
+        delete:
+            tags:
+                - Admin
+            description: 管理员删除
+            operationId: Admin_DeleteAdministrator
+            parameters:
+                - name: id
+                  in: query
+                  description: 主键id
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+        patch:
+            tags:
+                - Admin
+            description: 管理员恢复
+            operationId: Admin_RecoverAdministrator
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.IdReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+    /admin/v1/administrator/approve:
+        patch:
+            tags:
+                - Admin
+            description: 管理员解禁
+            operationId: Admin_ApproveAdministrator
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.IdReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+    /admin/v1/administrator/forbid:
+        patch:
+            tags:
+                - Admin
+            description: 管理员禁用
+            operationId: Admin_ForbidAdministrator
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.IdReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+    /admin/v1/administratorInfo:
+        get:
+            tags:
+                - Admin
+            description: 获取当前请求管理员信息
+            operationId: Admin_GetAdministratorInfo
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.Administrator'
+    /admin/v1/administrators:
+        get:
+            tags:
+                - Admin
+            description: 管理员列表
+            operationId: Admin_GetAdministratorList
+            parameters:
+                - name: page
+                  in: query
+                  description: 页码
+                  schema:
+                    type: integer
+                    format: int64
+                - name: pageSize
+                  in: query
+                  description: 页记录数
+                  schema:
+                    type: integer
+                    format: int64
+                - name: username
+                  in: query
+                  description: 用户名
+                  schema:
+                    type: string
+                - name: mobile
+                  in: query
+                  description: 手机号
+                  schema:
+                    type: string
+                - name: nickname
+                  in: query
+                  description: 昵称
+                  schema:
+                    type: string
+                - name: status.value
+                  in: query
+                  description: The bool value.
+                  schema:
+                    type: boolean
+                - name: createdAtStart
+                  in: query
+                  description: 创建开始时间
+                  schema:
+                    type: string
+                - name: createdAtEnd
+                  in: query
+                  description: 创建结束时间
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.GetAdministratorListPageRes'
+    /admin/v1/ai/chatgpt/message:
+        post:
+            tags:
+                - Admin
+            description: 创建chatgpt请求数据
+            operationId: Admin_CreateGptMessage
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.CreateGptMessageReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CreateGptMessageRes'
+    /admin/v1/authorization/api:
+        get:
+            tags:
+                - Admin
+            description: Api列表
+            operationId: Admin_GetApiList
+            parameters:
+                - name: page
+                  in: query
+                  description: 主键id
+                  schema:
+                    type: integer
+                    format: int64
+                - name: pageSize
+                  in: query
+                  description: 页记录数
+                  schema:
+                    type: integer
+                    format: int64
+                - name: name
+                  in: query
+                  description: 名称
+                  schema:
+                    type: string
+                - name: group
+                  in: query
+                  description: 分组
+                  schema:
+                    type: string
+                - name: method
+                  in: query
+                  description: 请求方式
+                  schema:
+                    type: string
+                - name: path
+                  in: query
+                  description: 请求路径
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.GetApiListRes'
+        delete:
+            tags:
+                - Admin
+            description: Api删除
+            operationId: Admin_DeleteApi
+            parameters:
+                - name: id
+                  in: query
+                  description: 主键id
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+    /admin/v1/authorization/apiAll:
+        get:
+            tags:
+                - Admin
+            description: 所有Api列表
+            operationId: Admin_GetApiAll
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.GetApiAllRes'
+    /admin/v1/authorization/deleteRoleForUser:
+        delete:
+            tags:
+                - Admin
+            description: 删除用户某个角色
+            operationId: Admin_DeleteRoleForUser
+            parameters:
+                - name: username
+                  in: query
+                  description: 用户名
+                  schema:
+                    type: string
+                - name: role
+                  in: query
+                  description: 角色名
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+    /admin/v1/authorization/deleteRolesForUser:
+        delete:
+            tags:
+                - Admin
+            description: 删除用户所有角色
+            operationId: Admin_DeleteRolesForUser
+            parameters:
+                - name: username
+                  in: query
+                  description: 用户名
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+    /admin/v1/authorization/getPolicies:
+        get:
+            tags:
+                - Admin
+            description: 策略授权规则 - 列表
+            operationId: Admin_GetPolicies
+            parameters:
+                - name: role
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.GetPoliciesRes'
+    /admin/v1/authorization/getRolesForUser:
+        get:
+            tags:
+                - Admin
+            description: 获取用户角色列表
+            operationId: Admin_GetRolesForUser
+            parameters:
+                - name: username
+                  in: query
+                  description: 用户名
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.GetRolesForUserRes'
+    /admin/v1/authorization/getUsersForRole:
+        get:
+            tags:
+                - Admin
+            description: 获取角色用户列表
+            operationId: Admin_GetUsersForRole
+            parameters:
+                - name: role
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.GetUsersForRoleRes'
+    /admin/v1/authorization/menu:
+        put:
+            tags:
+                - Admin
+            description: Menu更新
+            operationId: Admin_UpdateMenu
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.UpdateMenuReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+        post:
+            tags:
+                - Admin
+            description: Menu创建
+            operationId: Admin_CreateMenu
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.CreateMenuReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.Menu'
+        delete:
+            tags:
+                - Admin
+            description: Menu删除
+            operationId: Admin_DeleteMenu
+            parameters:
+                - name: id
+                  in: query
+                  description: 主键id
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+    /admin/v1/authorization/menuAll:
+        get:
+            tags:
+                - Admin
+            description: 所有Menu列表
+            operationId: Admin_GetMenuAll
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.GetMenuTreeRes'
+    /admin/v1/authorization/menuTree:
+        get:
+            tags:
+                - Admin
+            description: Menu列表
+            operationId: Admin_GetMenuTree
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.GetMenuTreeRes'
+    /admin/v1/authorization/role:
+        put:
+            tags:
+                - Admin
+            description: 角色更新
+            operationId: Admin_UpdateRole
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.UpdateRoleReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+        post:
+            tags:
+                - Admin
+            description: 角色创建
+            operationId: Admin_CreateRole
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.CreateRoleReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.Role'
+        delete:
+            tags:
+                - Admin
+            description: 角色删除
+            operationId: Admin_DeleteRole
+            parameters:
+                - name: id
+                  in: query
+                  description: 主键id
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+    /admin/v1/authorization/roleMenu:
+        get:
+            tags:
+                - Admin
+            description: 角色菜单列表
+            operationId: Admin_GetRoleMenu
+            parameters:
+                - name: role
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.GetMenuTreeRes'
+        post:
+            tags:
+                - Admin
+            description: 角色菜单更新
+            operationId: Admin_SetRoleMenu
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.SetRoleMenuReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+    /admin/v1/authorization/roleMenuBtn:
+        get:
+            tags:
+                - Admin
+            description: 获取角色菜单按钮列表
+            operationId: Admin_GetRoleMenuBtn
+            parameters:
+                - name: roleId
+                  in: query
+                  description: 角色id
+                  schema:
+                    type: integer
+                    format: int64
+                - name: roleName
+                  in: query
+                  description: 角色名称
+                  schema:
+                    type: string
+                - name: menuId
+                  in: query
+                  description: 菜单id
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.GetRoleMenuBtnRes'
+        post:
+            tags:
+                - Admin
+            description: 保存角色菜单按钮列表
+            operationId: Admin_SetRoleMenuBtn
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.SetRoleMenuBtnReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+    /admin/v1/authorization/roleMenuTree:
+        get:
+            tags:
+                - Admin
+            description: 角色菜单列表树
+            operationId: Admin_GetRoleMenuTree
+            parameters:
+                - name: role
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.GetMenuTreeRes'
+    /admin/v1/authorization/roles:
+        get:
+            tags:
+                - Admin
+            description: 角色列表
+            operationId: Admin_GetRoleAll
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.GetRoleAllRes'
+    /admin/v1/authorization/setRolesForUser:
+        post:
+            tags:
+                - Admin
+            description: 设置用户角色关系
+            operationId: Admin_SetRolesForUser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.SetRolesForUserReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+    /admin/v1/log/list:
+        get:
+            tags:
+                - Admin
+            description: 日志列表
+            operationId: Admin_GetApiLogList
+            parameters:
+                - name: page
+                  in: query
+                  description: 页码
+                  schema:
+                    type: integer
+                    format: int64
+                - name: pageSize
+                  in: query
+                  description: 页记录数
+                  schema:
+                    type: integer
+                    format: int64
+                - name: name
+                  in: query
+                  description: 名称
+                  schema:
+                    type: string
+                - name: userId
+                  in: query
+                  description: userId
+                  schema:
+                    type: string
+                - name: username
+                  in: query
+                  description: 用户名
+                  schema:
+                    type: string
+                - name: role
+                  in: query
+                  description: 角色
+                  schema:
+                    type: string
+                - name: operation
+                  in: query
+                  description: 路径
+                  schema:
+                    type: string
+                - name: ip
+                  in: query
+                  description: ip
+                  schema:
+                    type: string
+                - name: traceId
+                  in: query
+                  description: trace_id
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.GetApiLogListRes'
+    /admin/v1/login:
+        post:
+            tags:
+                - Admin
+            description: 管理员登陆
+            operationId: Admin_Login
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.LoginReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.LoginRes'
+    /admin/v1/loginout:
+        post:
+            tags:
+                - Admin
+            description: 管理员退出
+            operationId: Admin_LoginOut
+            requestBody:
+                content:
+                    application/json: {}
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+    /admin/v1/oss/token:
+        get:
+            tags:
+                - Admin
+            description: OSS STSTOKEN 获取
+            operationId: Admin_GetOssStsToken
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.OssStsTokenResponse'
+    admin/v1/authorization/api:
+        put:
+            tags:
+                - Admin
+            description: Api更新
+            operationId: Admin_UpdateApi
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.UpdateApiReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+        post:
+            tags:
+                - Admin
+            description: Api创建
+            operationId: Admin_CreateApi
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.CreateApiReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.Api'
+    admin/v1/authorization/updatePolicies:
+        post:
+            tags:
+                - Admin
+            description: 策略授权规则 - 更新
+            operationId: Admin_UpdatePolicies
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/admin.v1.UpdatePoliciesReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+components:
+    schemas:
+        admin.v1.Administrator:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: id
+                    format: int64
+                username:
+                    type: string
+                    description: 用户名
+                mobile:
+                    type: string
+                    description: 手机号
+                nickname:
+                    type: string
+                    description: 昵称
+                avatar:
+                    type: string
+                    description: 头像
+                status:
+                    type: boolean
+                    description: 状态 true正常 false冻结
+                role:
+                    type: string
+                    description: 角色
+                lastLoginTime:
+                    type: string
+                    description: 上次登录时间
+                lastLoginIp:
+                    type: string
+                    description: 上次登录ip
+                createdAt:
+                    type: string
+                    description: 创建时间
+                updatedAt:
+                    type: string
+                    description: 更新时间
+                deletedAt:
+                    type: string
+                    description: 删除时间
+            description: 响应-管理员
+        admin.v1.Api:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: 主键id
+                    format: int64
+                name:
+                    type: string
+                    description: 名称
+                group:
+                    type: string
+                    description: 分组
+                method:
+                    type: string
+                    description: 请求方式
+                path:
+                    type: string
+                    description: 请求路径
+                createdAt:
+                    type: string
+                    description: 创建时间
+                updatedAt:
+                    type: string
+                    description: 更新时间
+            description: 响应 - API信息
+        admin.v1.ApiLog:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: 日志id
+                    format: int64
+                traceId:
+                    type: string
+                    description: trace id
+                component:
+                    type: string
+                    description: http/rpc
+                operation:
+                    type: string
+                    description: kratos操作路径
+                userId:
+                    type: string
+                    description: 用户id
+                method:
+                    type: string
+                    description: 请求方式
+                path:
+                    type: string
+                    description: 请求路径
+                request:
+                    type: string
+                    description: 请求内容
+                code:
+                    type: string
+                    description: 响应内容
+                reason:
+                    type: string
+                    description: 提示信息
+                ip:
+                    type: string
+                    description: 请求ip
+                createdAt:
+                    type: string
+                    description: 创建时间
+                domain:
+                    type: string
+                    description: 域
+                name:
+                    type: string
+                    description: 名称
+                latency:
+                    type: string
+                    description: 响应时长
+                username:
+                    type: string
+                    description: 用户名
+                role:
+                    type: string
+                    description: 角色
+            description: 响应 - 日志
+        admin.v1.ChatgptChoiceMessageRes:
+            type: object
+            properties:
+                role:
+                    type: string
+                content:
+                    type: string
+        admin.v1.ChatgptChoiceRes:
+            type: object
+            properties:
+                finishReason:
+                    type: string
+                index:
+                    type: string
+                message:
+                    $ref: '#/components/schemas/admin.v1.ChatgptChoiceMessageRes'
+        admin.v1.ChatgptMessageReq:
+            type: object
+            properties:
+                role:
+                    type: string
+                content:
+                    type: string
+        admin.v1.ChatgptUsageRes:
+            type: object
+            properties:
+                promptTokes:
+                    type: string
+                completionTokes:
+                    type: string
+                totalTokens:
+                    type: integer
+                    format: int64
+        admin.v1.CheckResponse:
+            type: object
+            properties:
+                success:
+                    type: boolean
+            description: 响应 - 检查是否处理成功
+        admin.v1.CreateAdministratorReq:
+            type: object
+            properties:
+                username:
+                    type: string
+                    description: 用户名
+                password:
+                    type: string
+                    description: 密码
+                mobile:
+                    type: string
+                    description: 手机号
+                nickname:
+                    type: string
+                    description: 昵称
+                avatar:
+                    type: string
+                    description: 头像
+                status:
+                    type: boolean
+                    description: 状态 true正常 false冻结
+                role:
+                    type: array
+                    items:
+                        type: string
+                    description: 当前角色数组,默认第一个为当前角色
+            description: 请求 - 管理员创建
+        admin.v1.CreateApiReq:
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: 名称
+                group:
+                    type: string
+                    description: 分组
+                method:
+                    type: string
+                    description: 请求方式
+                path:
+                    type: string
+                    description: 请求路径
+            description: 请求 - API创建
+        admin.v1.CreateGptMessageReq:
+            type: object
+            properties:
+                model:
+                    type: string
+                    description: 模型
+                messages:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/admin.v1.ChatgptMessageReq'
+            description: 请求 - chathpt请求查询
+        admin.v1.CreateGptMessageRes:
+            type: object
+            properties:
+                id:
+                    type: string
+                object:
+                    type: string
+                created:
+                    type: integer
+                    format: int64
+                model:
+                    type: string
+                usage:
+                    $ref: '#/components/schemas/admin.v1.ChatgptUsageRes'
+                choices:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/admin.v1.ChatgptChoiceRes'
+                error:
+                    $ref: '#/components/schemas/admin.v1.ErrorMessageRes'
+            description: 响应 - chathpt请求查询
+        admin.v1.CreateMenuReq:
+            type: object
+            properties:
+                parentId:
+                    type: integer
+                    description: 父级id
+                    format: int64
+                path:
+                    type: string
+                    description: 前端路径
+                name:
+                    type: string
+                    description: 菜单名
+                hidden:
+                    type: boolean
+                    description: 是否隐藏
+                component:
+                    type: string
+                    description: 前端文件路径
+                sort:
+                    type: integer
+                    description: 排序
+                    format: int64
+                title:
+                    type: string
+                    description: 页面名称
+                icon:
+                    type: string
+                    description: 菜单图标
+                menuBtns:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/admin.v1.MenuBtn'
+                    description: 菜单按钮列表
+                parentIds:
+                    type: string
+                    description: 父级id字符串 英文逗号分割
+            description: 请求 - 菜单创建
+        admin.v1.CreateRoleReq:
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: 名称
+            description: 请求 - 角色创建
+        admin.v1.ErrorMessageRes:
+            type: object
+            properties:
+                message:
+                    type: string
+        admin.v1.GetAdministratorListPageRes:
+            type: object
+            properties:
+                total:
+                    type: integer
+                    description: 总记录数
+                    format: int64
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/admin.v1.Administrator'
+                    description: 列表
+            description: 请求 - 管理员分页
+        admin.v1.GetApiAllRes:
+            type: object
+            properties:
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/admin.v1.Api'
+                    description: 列表
+            description: 响应 - api列表(全部)
+        admin.v1.GetApiListRes:
+            type: object
+            properties:
+                total:
+                    type: integer
+                    description: 总数
+                    format: int64
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/admin.v1.Api'
+                    description: 列表
+            description: 响应 - API分页
+        admin.v1.GetApiLogListRes:
+            type: object
+            properties:
+                total:
+                    type: integer
+                    description: 总数
+                    format: int64
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/admin.v1.ApiLog'
+                    description: 列表
+            description: 响应 - 日志列表
+        admin.v1.GetMenuTreeRes:
+            type: object
+            properties:
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/admin.v1.Menu'
+                    description: 菜单列表
+            description: 请求 - 获取菜单树 响应 - 菜单树列表
+        admin.v1.GetPoliciesRes:
+            type: object
+            properties:
+                policyRules:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/admin.v1.PolicyRules'
+            description: 响应 - 权限策略列表
+        admin.v1.GetRoleAllRes:
+            type: object
+            properties:
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/admin.v1.Role'
+            description: 获取角色列表
+        admin.v1.GetRoleMenuBtnRes:
+            type: object
+            properties:
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/admin.v1.MenuBtn'
+                    description: 菜单按钮列表
+            description: 响应 - 角色菜单按钮列表
+        admin.v1.GetRolesForUserRes:
+            type: object
+            properties:
+                roles:
+                    type: array
+                    items:
+                        type: string
+                    description: 角色数组
+            description: 响应 - 用户角色列表
+        admin.v1.GetUsersForRoleRes:
+            type: object
+            properties:
+                users:
+                    type: array
+                    items:
+                        type: string
+                    description: 用户列表
+            description: 响应 - 角色用户列表
+        admin.v1.IdReq:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: 主键id
+                    format: int64
+            description: 请求 - id主键
+        admin.v1.LoginReq:
+            type: object
+            properties:
+                username:
+                    type: string
+                    description: 用户名
+                password:
+                    type: string
+                    description: 密码
+            description: 请求-管理员登录
+        admin.v1.LoginRes:
+            type: object
+            properties:
+                token:
+                    type: string
+                    description: token
+            description: 响应-管理员登录Token
+        admin.v1.Menu:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: 主键id
+                    format: int64
+                parentId:
+                    type: integer
+                    description: 父级id
+                    format: int64
+                path:
+                    type: string
+                    description: 前端路径
+                name:
+                    type: string
+                    description: 菜单名
+                hidden:
+                    type: boolean
+                    description: 是否隐藏
+                component:
+                    type: string
+                    description: 前端文件路径
+                sort:
+                    type: integer
+                    description: 排序
+                    format: int64
+                title:
+                    type: string
+                    description: 页面名称
+                icon:
+                    type: string
+                    description: 菜单图标
+                createdAt:
+                    type: string
+                    description: 创建时间
+                updatedAt:
+                    type: string
+                    description: 更新时间
+                children:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/admin.v1.Menu'
+                    description: 子菜单
+                menuBtns:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/admin.v1.MenuBtn'
+                    description: 菜单按钮列表
+                parentIds:
+                    type: string
+                    description: 父级id字符串 英文逗号分割
+            description: 响应 - 菜单详情
+        admin.v1.MenuBtn:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: 主键id
+                    format: int64
+                menuId:
+                    type: integer
+                    description: 菜单id
+                    format: int64
+                name:
+                    type: string
+                    description: 按钮名称
+                description:
+                    type: string
+                    description: 描述
+                identifier:
+                    type: string
+                    description: 英文标识
+                createdAt:
+                    type: string
+                    description: 创建时间
+                updatedAt:
+                    type: string
+                    description: 更新时间
+            description: 响应 - 菜单按钮详情
+        admin.v1.OssStsTokenResponse:
+            type: object
+            properties:
+                accessKey:
+                    type: string
+                    description: access_key
+                accessSecret:
+                    type: string
+                    description: access_secret
+                expiration:
+                    type: string
+                    description: 过期时间
+                securityToken:
+                    type: string
+                    description: 安全令牌
+                endPoint:
+                    type: string
+                    description: 终端
+                bucketName:
+                    type: string
+                    description: 存储桶
+                region:
+                    type: string
+                    description: 区域
+                url:
+                    type: string
+                    description: url
+            description: 响应 - OSS前端直传信息
+        admin.v1.PolicyRules:
+            type: object
+            properties:
+                path:
+                    type: string
+                    description: operation路径
+                method:
+                    type: string
+                    description: 请求方式
+            description: 响应 - 权限策略
+        admin.v1.Role:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: 主键id
+                    format: int64
+                name:
+                    type: string
+                    description: 名称
+                createdAt:
+                    type: string
+                updatedAt:
+                    type: string
+                    description: 更新时间
+            description: 响应 - 角色信息
+        admin.v1.SetRoleMenuBtnReq:
+            type: object
+            properties:
+                roleId:
+                    type: integer
+                    description: 角色id
+                    format: int64
+                menuId:
+                    type: integer
+                    description: 菜单id
+                    format: int64
+                menuBtnIds:
+                    type: array
+                    items:
+                        type: integer
+                        format: int64
+                    description: 按钮id数组
+            description: 请求 - 角色菜单按钮保存
+        admin.v1.SetRoleMenuReq:
+            type: object
+            properties:
+                roleId:
+                    type: integer
+                    description: 角色id
+                    format: int64
+                menuIds:
+                    type: array
+                    items:
+                        type: integer
+                        format: int64
+                    description: 菜单id数组
+            description: 请求 - 设置角色菜单
+        admin.v1.SetRolesForUserReq:
+            type: object
+            properties:
+                username:
+                    type: string
+                    description: 用户名
+                roles:
+                    type: array
+                    items:
+                        type: string
+                    description: 角色数组
+            description: 请求 - 设置用户角色
+        admin.v1.UpdateAdministratorReq:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                username:
+                    type: string
+                    description: 用户名
+                password:
+                    type: string
+                    description: 密码
+                mobile:
+                    type: string
+                    description: 手机号
+                nickname:
+                    type: string
+                    description: 昵称
+                avatar:
+                    type: string
+                    description: 头像
+                status:
+                    type: boolean
+                    description: 状态 true正常 false冻结
+                role:
+                    type: array
+                    items:
+                        type: string
+                    description: 当前角色数组,默认第一个为当前角色
+            description: 请求 - 管理员更新
+        admin.v1.UpdateApiReq:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: 主键id
+                    format: int64
+                name:
+                    type: string
+                    description: 名称
+                group:
+                    type: string
+                    description: 分组
+                method:
+                    type: string
+                    description: 请求方式
+                path:
+                    type: string
+                    description: 请求路径
+            description: 请求 - API更新
+        admin.v1.UpdateMenuReq:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: 主键id
+                    format: int64
+                parentId:
+                    type: integer
+                    description: 父级id
+                    format: int64
+                path:
+                    type: string
+                    description: 前端路径
+                name:
+                    type: string
+                    description: 菜单名
+                hidden:
+                    type: boolean
+                    description: 是否隐藏
+                component:
+                    type: string
+                    description: 前端文件路径
+                sort:
+                    type: integer
+                    description: 排序
+                    format: int64
+                title:
+                    type: string
+                    description: 页面名称
+                icon:
+                    type: string
+                    description: 菜单图标
+                menuBtns:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/admin.v1.MenuBtn'
+                    description: 菜单按钮列表
+                parentIds:
+                    type: string
+                    description: 父级id字符串 英文逗号分割
+            description: 请求 - 菜单更新
+        admin.v1.UpdatePoliciesReq:
+            type: object
+            properties:
+                role:
+                    type: string
+                    description: 角色名
+                policyRules:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/admin.v1.PolicyRules'
+                    description: 权限策略
+            description: 请求 - 权限策略更新
+        admin.v1.UpdateRoleReq:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: 主键id
+                    format: int64
+                name:
+                    type: string
+                    description: 名称
+            description: 请求 - 角色更新
+tags:
+    - name: Admin
