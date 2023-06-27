@@ -23,7 +23,7 @@ func NewAdministratorServiceClient(sr *conf.Endpoint, r registry.Discovery, tp *
 	conn, err := grpc.DialInsecure(
 		context.Background(),
 		grpc.WithEndpoint(sr.Administrator),
-		// grpc.WithDiscovery(r),
+		grpc.WithDiscovery(r),
 		grpc.WithMiddleware(
 			recovery.Recovery(),
 			tracing.Client(tracing.WithTracerProvider(tp)),
