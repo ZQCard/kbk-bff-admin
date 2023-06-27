@@ -40,7 +40,7 @@ service Admin {
 	// 管理员退出
 	rpc LoginOut(google.protobuf.Empty) returns (CheckResponse) {
 		option (google.api.http) = {
-			post : "/admin/v1/loginout"
+			post : "/admin/v1/logout"
 			body : "*"
 		};
 	};

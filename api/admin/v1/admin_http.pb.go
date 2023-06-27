@@ -107,7 +107,7 @@ type AdminHTTPServer interface {
 func RegisterAdminHTTPServer(s *http.Server, srv AdminHTTPServer) {
 	r := s.Route("/")
 	r.POST("/admin/v1/login", _Admin_Login0_HTTP_Handler(srv))
-	r.POST("/admin/v1/loginout", _Admin_LoginOut0_HTTP_Handler(srv))
+	r.POST("/admin/v1/logout", _Admin_LoginOut0_HTTP_Handler(srv))
 	r.GET("/admin/v1/administrators", _Admin_GetAdministratorList0_HTTP_Handler(srv))
 	r.GET("/admin/v1/administrator", _Admin_GetAdministrator0_HTTP_Handler(srv))
 	r.GET("/admin/v1/administratorInfo", _Admin_GetAdministratorInfo0_HTTP_Handler(srv))
@@ -1351,7 +1351,7 @@ func (c *AdminHTTPClientImpl) Login(ctx context.Context, in *LoginReq, opts ...h
 
 func (c *AdminHTTPClientImpl) LoginOut(ctx context.Context, in *emptypb.Empty, opts ...http.CallOption) (*CheckResponse, error) {
 	var out CheckResponse
-	pattern := "/admin/v1/loginout"
+	pattern := "/admin/v1/logout"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdminLoginOut))
 	opts = append(opts, http.PathTemplate(pattern))

@@ -758,7 +758,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/admin.v1.LoginRes'
-    /admin/v1/loginout:
+    /admin/v1/logout:
         post:
             tags:
                 - Admin
