@@ -117,5 +117,5 @@ initNewService:
 	@echo "project start success"
 .PHONY: docker
 docker:
-	docker build -t kbk-bff-admin .
-	docker run -itd --name kbk-bff-admin -p 8000:8000 -p 9000:9000 -v /data/project/kratos-base-kit/kbk-bff-admin/configs/:/data/conf kbk-bff-admin
+	docker build -t kbk-bff-admin:$(VERSION) .
+	docker run -itd --name kbk-bff-admin$(VERSION) -p 8000:8000 -p 9000:9000 -v /data/project/kratos-base-kit/kbk-bff-admin/configs/:/data/conf kbk-bff-admin:$(VERSION)
