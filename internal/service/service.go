@@ -13,6 +13,7 @@ var ProviderSet = wire.NewSet(NewAdminInterface)
 type AdminInterface struct {
 	v1.UnimplementedAdminServer
 	administratorRepo *data.AdministratorRepo
+	userRepo          *data.UserRepo
 	authorizationRepo *data.AuthorizationRepo
 	apiLogRepo        *data.ApiLogRepo
 	fileRepo          *data.FileRepo
@@ -22,6 +23,7 @@ type AdminInterface struct {
 
 func NewAdminInterface(
 	administratorRepo *data.AdministratorRepo,
+	userRepo *data.UserRepo,
 	authorizationRepo *data.AuthorizationRepo,
 	apiLogRepo *data.ApiLogRepo,
 	fileRepo *data.FileRepo,
@@ -31,6 +33,7 @@ func NewAdminInterface(
 	return &AdminInterface{
 		log:               log.NewHelper(log.With(logger, "module", "service/interface")),
 		administratorRepo: administratorRepo,
+		userRepo:          userRepo,
 		apiLogRepo:        apiLogRepo,
 		fileRepo:          fileRepo,
 		authorizationRepo: authorizationRepo,

@@ -19,7 +19,7 @@ const CabinObj = "role"
 func CasbinMiddleware(authorizationClient authorizationV1.AuthorizationServiceClient) middleware.Middleware {
 	return func(handler middleware.Handler) middleware.Handler {
 		return func(ctx context.Context, req interface{}) (interface{}, error) {
-
+			return handler(ctx, req)
 			claim, _ := jwt.FromContext(ctx)
 			if claim == nil {
 				return nil, errors.Unauthorized("Token Missing", "token解析失败")

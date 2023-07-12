@@ -75,4 +75,5 @@ message Endpoint {
   string file = 5;
   string notice = 6;
   string ai = 7;
+  string user = 8;
 }

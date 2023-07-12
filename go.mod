@@ -81,6 +81,7 @@ require (
 
 require (
 	github.com/ZQCard/kbk-administrator v1.0.0
+	github.com/ZQCard/kbk-user v1.0.0
 	github.com/ZQCard/kbk-ai v1.0.0
 	github.com/ZQCard/kbk-authorization v1.0.0
 	github.com/ZQCard/kbk-file v1.0.0
@@ -93,14 +94,15 @@ require (
 )
 
 replace (
-	github.com/ZQCard/kbk-administrator => github.com/ZQCard/kbk-administrator v0.1.1
-	// github.com/ZQCard/kbk-log => ../kbk-log
-	github.com/ZQCard/kbk-ai => github.com/ZQCard/kbk-ai v0.1.1
 	// github.com/ZQCard/kbk-administrator => ../kbk-administrator
-	github.com/ZQCard/kbk-authorization => github.com/ZQCard/kbk-authorization v0.1.1
+	github.com/ZQCard/kbk-administrator => github.com/ZQCard/kbk-administrator v0.1.1
+	github.com/ZQCard/kbk-ai => github.com/ZQCard/kbk-ai v0.1.1
 	// github.com/ZQCard/kbk-authorization => ../kbk-authorization
-	github.com/ZQCard/kbk-file => github.com/ZQCard/kbk-file v0.1.1
+	github.com/ZQCard/kbk-authorization => github.com/ZQCard/kbk-authorization v0.1.1
 	// github.com/ZQCard/kbk-file => ../kbk-file
+	github.com/ZQCard/kbk-file => github.com/ZQCard/kbk-file v0.1.1
+	// github.com/ZQCard/kbk-log => ../kbk-log
 	github.com/ZQCard/kbk-log => github.com/ZQCard/kbk-log v0.1.1
-// github.com/ZQCard/kbk-ai => ../kbk-ai
+	github.com/ZQCard/kbk-user => ../kbk-user
+
 )

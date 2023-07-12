@@ -31,16 +31,18 @@ func wireApp(env *conf.Env, confServer *conf.Server, confService *conf.Service, 
 	logServiceClient := data.NewApiLogClient(endpoint, discovery, tracerProvider)
 	fileServiceClient := data.NewFileClient(endpoint, discovery, tracerProvider)
 	aiServiceClient := data.NewAIClient(endpoint, discovery, tracerProvider)
-	dataData, cleanup, err := data.NewData(bootstrap, client, logger, administratorServiceClient, authorizationServiceClient, logServiceClient, fileServiceClient, aiServiceClient)
+	userServiceClient := data.NewUserServiceClient(endpoint, discovery, tracerProvider)
+	dataData, cleanup, err := data.NewData(bootstrap, client, logger, administratorServiceClient, authorizationServiceClient, logServiceClient, fileServiceClient, aiServiceClient, userServiceClient)
 	if err != nil {
 		return nil, nil, err
 	}
 	administratorRepo := data.NewAdministratorRepo(dataData, logger)
+	userRepo := data.NewUserRepo(dataData, logger)
 	authorizationRepo := data.NewAuthorizationRepo(dataData, logger)
 	apiLogRepo := data.NewApiLogRepo(dataData, logger)
 	fileRepo := data.NewFileRepo(dataData, logger)
 	aiRepo := data.NewAIRepo(dataData, logger)
-	adminInterface := service.NewAdminInterface(administratorRepo, authorizationRepo, apiLogRepo, fileRepo, logger, aiRepo)
+	adminInterface := service.NewAdminInterface(administratorRepo, userRepo, authorizationRepo, apiLogRepo, fileRepo, logger, aiRepo)
 	httpServer := server.NewHTTPServer(confServer, auth, adminInterface, tracerProvider, authorizationServiceClient, logger, logServiceClient, client)
 	registrar := data.NewRegistrar(registry)
 	app := newApp(logger, httpServer, registrar)

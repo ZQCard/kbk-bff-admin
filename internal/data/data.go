@@ -17,6 +17,7 @@ import (
 	"github.com/ZQCard/kbk-bff-admin/internal/conf"
 	fileV1 "github.com/ZQCard/kbk-file/api/file/v1"
 	logV1 "github.com/ZQCard/kbk-log/api/log/v1"
+	userV1 "github.com/ZQCard/kbk-user/api/user/v1"
 )
 
 var auth *conf.Auth
@@ -41,6 +42,8 @@ var ProviderSet = wire.NewSet(
 	NewRedisClient,
 	NewAIRepo,
 	NewAIClient,
+	NewUserServiceClient,
+	NewUserRepo,
 )
 
 // Data .
@@ -53,6 +56,7 @@ type Data struct {
 	logClient           logV1.LogServiceClient
 	fileClient          fileV1.FileServiceClient
 	aiClient            aiV1.AIServiceClient
+	userClient          userV1.UserServiceClient
 }
 
 func NewData(
@@ -64,6 +68,7 @@ func NewData(
 	logClient logV1.LogServiceClient,
 	fileClient fileV1.FileServiceClient,
 	aiClient aiV1.AIServiceClient,
+	userClient userV1.UserServiceClient,
 ) (*Data, func(), error) {
 	auth = cfg.Auth
 	logs := log.NewHelper(log.With(logger, "module", "kratos-base-layout/data"))
@@ -80,6 +85,7 @@ func NewData(
 		rdb:                 redisCli,
 		fileClient:          fileClient,
 		aiClient:            aiClient,
+		userClient:          userClient,
 	}, cleanup, nil
 }
 

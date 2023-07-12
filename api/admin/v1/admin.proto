@@ -30,6 +30,7 @@ option (openapi.v3.document) = {
 
 // 管理后台服务
 service Admin {
+    //-------------------------- 管理员服务 ----------------------------------------//
     // 管理员登陆
 	rpc Login(LoginReq) returns (LoginRes) {
 		option (google.api.http) = {
@@ -108,15 +109,15 @@ service Admin {
 			body : "*"
 		};
 	};
-
-    // 角色列表
+    //-------------------------- 权限服务 ----------------------------------------//
+    // 权限 —— 角色列表
 	rpc GetRoleAll (google.protobuf.Empty) returns (GetRoleAllRes){
 		option (google.api.http) = {
 			get : "/admin/v1/authorization/roles",
 		};
 	};
 
-	// 角色创建
+	// 权限 —— 角色创建
 	rpc CreateRole (CreateRoleReq) returns (Role){
 		option (google.api.http) = {
 			post : "/admin/v1/authorization/role",
@@ -124,7 +125,7 @@ service Admin {
 		};
 	};
 
-	// 角色更新
+	// 权限 —— 角色更新
 	rpc UpdateRole (UpdateRoleReq) returns (CheckResponse){
 		option (google.api.http) = {
 			put : "/admin/v1/authorization/role"
@@ -132,14 +133,14 @@ service Admin {
 		};
 	};
 
-	// 角色删除
+	// 权限 —— 角色删除
 	rpc DeleteRole (IdReq) returns (CheckResponse){
 		option (google.api.http) = {
 			delete : "/admin/v1/authorization/role"
 		};
 	};
 
-	// 设置用户角色关系
+	// 权限 —— 设置用户角色关系
 	rpc SetRolesForUser (SetRolesForUserReq) returns (CheckResponse){
 		option (google.api.http) = {
 			post : "/admin/v1/authorization/setRolesForUser"
@@ -147,28 +148,28 @@ service Admin {
 		};
 	};
 
-	// 获取用户角色列表
+	// 权限 —— 获取用户角色列表
 	rpc GetRolesForUser (GetRolesForUserReq) returns (GetRolesForUserRes){
 		option (google.api.http) = {
 			get : "/admin/v1/authorization/getRolesForUser"
 		};
 	};
 
-	// 获取角色用户列表
+	// 权限 —— 获取角色用户列表
 	rpc GetUsersForRole (RoleNameReq) returns (GetUsersForRoleRes){
 		option (google.api.http) = {
 			get : "/admin/v1/authorization/getUsersForRole"
 		};
 	};
 
-	// 删除用户某个角色
+	// 权限 —— 删除用户某个角色
 	rpc DeleteRoleForUser (DeleteRoleForUserReq) returns (CheckResponse){
 		option (google.api.http) = {
 			delete : "/admin/v1/authorization/deleteRoleForUser"
 		};
 	};
 
-	// 删除用户所有角色
+	// 权限 —— 删除用户所有角色
 	rpc DeleteRolesForUser (DeleteRolesForUserReq) returns (CheckResponse){
 		option (google.api.http) = {
 			delete : "/admin/v1/authorization/deleteRolesForUser"
@@ -181,7 +182,7 @@ service Admin {
 			get : "/admin/v1/authorization/getPolicies"
 		};
 	};
-	// 策略授权规则 - 更新
+	// 权限 —— 策略授权规则 - 更新
 	rpc UpdatePolicies (UpdatePoliciesReq) returns (CheckResponse){
 		option (google.api.http) = {
 			post : "admin/v1/authorization/updatePolicies"
@@ -189,21 +190,21 @@ service Admin {
 		};
 	};
 
-    // 所有Api列表
+    // 权限 —— 所有Api列表
 	rpc GetApiAll (google.protobuf.Empty) returns (GetApiAllRes){
         option (google.api.http) = {
 			get : "/admin/v1/authorization/apiAll"
 		};
     };
 
-	// Api列表
+	// 权限 —— Api列表
 	rpc GetApiList (GetApiListReq) returns (GetApiListRes){
         option (google.api.http) = {
 			get : "/admin/v1/authorization/api"
 		};
     };
 
-	// Api创建
+	// 权限 —— Api创建
 	rpc CreateApi (CreateApiReq) returns (Api){
         option (google.api.http) = {
 			post : "admin/v1/authorization/api"
@@ -211,7 +212,7 @@ service Admin {
 		};
     };
 
-	// Api更新
+	// 权限 —— Api更新
 	rpc UpdateApi (UpdateApiReq) returns (CheckResponse){
         option (google.api.http) = {
 			put : "admin/v1/authorization/api"
@@ -219,27 +220,27 @@ service Admin {
 		};
     };
 
-	// Api删除
+	// 权限 —— Api删除
 	rpc DeleteApi (IdReq) returns (CheckResponse){
         option (google.api.http) = {
 			delete : "/admin/v1/authorization/api"
 		};
     };
 
-	// 所有Menu列表
+	// 权限 —— 所有Menu列表
 	rpc GetMenuAll (google.protobuf.Empty) returns (GetMenuTreeRes){
 		option (google.api.http) = {
 			get : "/admin/v1/authorization/menuAll"
 		};
 	};
-	// Menu列表
+	// 权限 —— Menu列表
 	rpc GetMenuTree (google.protobuf.Empty) returns (GetMenuTreeRes){
 		option (google.api.http) = {
 			get : "/admin/v1/authorization/menuTree"
 		};
 	};
 
-	// Menu创建
+	// 权限 —— Menu创建
 	rpc CreateMenu (CreateMenuReq) returns (Menu){
 		option (google.api.http) = {
 			post : "/admin/v1/authorization/menu"
@@ -247,7 +248,7 @@ service Admin {
 		};
 	};
 
-	// Menu更新
+	// 权限 —— Menu更新
 	rpc UpdateMenu (UpdateMenuReq) returns (CheckResponse){
 		option (google.api.http) = {
 			put : "/admin/v1/authorization/menu"
@@ -255,28 +256,28 @@ service Admin {
 		};
 	};
 
-	// Menu删除
+	// 权限 —— Menu删除
 	rpc DeleteMenu (IdReq) returns (CheckResponse){
 		option (google.api.http) = {
 			delete : "/admin/v1/authorization/menu"
 		};
 	};
 
-	// 角色菜单列表树
+	// 权限 —— 角色菜单列表树
 	rpc GetRoleMenuTree (RoleNameReq) returns (GetMenuTreeRes){
 		option (google.api.http) = {
 			get : "/admin/v1/authorization/roleMenuTree"
 		};
 	};
 
-	// 角色菜单列表
+	// 权限 —— 角色菜单列表
 	rpc GetRoleMenu (RoleNameReq) returns (GetMenuTreeRes){
 		option (google.api.http) = {
 			get : "/admin/v1/authorization/roleMenu"
 		};
 	};
 
-	// 角色菜单更新
+	// 权限 —— 角色菜单更新
 	rpc SetRoleMenu (SetRoleMenuReq) returns (CheckResponse){
 		option (google.api.http) = { 
             post:"/admin/v1/authorization/roleMenu"  
@@ -284,38 +285,234 @@ service Admin {
         };
 	};
 
-	// 获取角色菜单按钮列表
+	// 权限 —— 获取角色菜单按钮列表
 	rpc GetRoleMenuBtn (GetRoleMenuBtnReq) returns (GetRoleMenuBtnRes){
 		option (google.api.http) = { 
             get:"/admin/v1/authorization/roleMenuBtn"  
         };
 	};
-	// 保存角色菜单按钮列表
+	// 权限 —— 保存角色菜单按钮列表
 	rpc SetRoleMenuBtn (SetRoleMenuBtnReq) returns (CheckResponse){
 		option (google.api.http) = { 
             post:"/admin/v1/authorization/roleMenuBtn"  
             body:"*"
         };
 	};
-	// 日志列表
+    //-------------------------- 日志服务 ----------------------------------------//
+	// 日志 —— 列表
 	rpc GetApiLogList(GetApiLogListReq) returns(GetApiLogListRes){
         option (google.api.http) = { 
             get:"/admin/v1/log/list"
         };
     };
-    // OSS STSTOKEN 获取
+    //-------------------------- OSS服务 ----------------------------------------//
+
+    // 文件 ——  OSS STSTOKEN 获取
 	rpc GetOssStsToken(google.protobuf.Empty) returns(OssStsTokenResponse){
         option (google.api.http) = { 
             get:"/admin/v1/oss/token"
         };
     };
-    // 创建chatgpt请求数据
+    //-------------------------- CHATGPT服务 ----------------------------------------//
+    // AI —— 创建chatgpt请求数据
     rpc CreateGptMessage(CreateGptMessageReq) returns(CreateGptMessageRes){
         option (google.api.http) = { 
             post:"/admin/v1/ai/chatgpt/message"  
             body:"*"
         };
     };
+    //-------------------------- 用户服务 ----------------------------------------//
+
+    // 用户 —— 列表
+    rpc GetUserList(GetUserListReq) returns(GetUserListPageRes){
+        option (google.api.http) = { 
+            get:"/admin/v1/user"  
+        };
+    };
+
+    // 用户 —— 详情
+    rpc GetUser(IdReq) returns(User){
+        option (google.api.http) = { 
+            get:"/admin/v1/user/{id}"  
+        };
+    };  
+
+    // 用户 —— 创建
+    rpc CreateUser(CreateUserReq) returns(User){
+        option (google.api.http) = { 
+            post:"/admin/v1/user"  
+            body:"*"
+        };
+    };
+
+    // 用户 —— 更新
+    rpc UpdateUser(UpdateUserReq) returns(CheckResponse){
+        option (google.api.http) = { 
+            put:"/admin/v1/user"  
+            body:"*"
+        };
+    };
+
+    // 用户 —— 删除
+    rpc DeleteUser(IdReq) returns(CheckResponse){
+        option (google.api.http) = { 
+            delete:"/admin/v1/user"  
+        };
+    };
+
+    // 用户 —— 恢复
+    rpc RecoverUser(IdReq) returns(CheckResponse){
+        option (google.api.http) = { 
+            patch:"/admin/v1/user"  
+            body:"*"
+        };
+    };
+     // 用户 —— 更改状态
+	rpc ForbidUser (IdReq) returns (CheckResponse){
+		option (google.api.http) = {
+			patch : "/admin/v1/user/forbid"
+			body : "*"
+		};
+	};
+	// 管理员解禁
+	rpc ApproveUser (IdReq) returns (CheckResponse){
+		option (google.api.http) = {
+			patch : "/admin/v1/user/approve"
+			body : "*"
+		};
+	};
+}
+
+
+// 请求-用户状态修改
+message UserStatusChangeReq {
+    // id
+	int64 id = 1[
+        (validate.rules).int64.gt = 0
+    ];
+     // 状态 true正常 false冻结
+	bool status = 2;
+}
+
+// 请求 - 更新
+message UpdateUserReq {
+    // 主键id
+    int64 id = 1 [
+        (validate.rules).int64.gt = 0
+    ];
+    // 用户名
+    string username = 2 [
+        (validate.rules).string = {min_len: 1, max_len: 60}
+    ];
+     // 密码
+     string password = 3 [
+        (validate.rules).string = {min_len: 1, max_len: 60}
+    ];
+     // 状态
+     bool status = 4;
+     // 手机号
+     string mobile = 5 [
+        (validate.rules).string = {min_len: 8, max_len: 20}
+    ];
+     // 昵称
+     string nickname = 6 [
+        (validate.rules).string = {min_len: 1, max_len: 60}
+    ];
+     // 头像
+     string avatar = 7 [
+        (validate.rules).string = {min_len: 1, max_len: 255}
+    ];
+     // 微信openId
+     string wx_open_id = 8;
+}
+
+// 请求 - 创建
+message CreateUserReq {
+    string username = 1 [
+        (validate.rules).string = {min_len: 1, max_len: 60}
+    ];
+     // 密码
+     string password = 2 [
+        (validate.rules).string = {min_len: 1, max_len: 60}
+    ];
+     // 状态
+     bool status = 3;
+     // 手机号
+     string mobile = 4 [
+        (validate.rules).string = {min_len: 8, max_len: 20}
+    ];
+     // 昵称
+     string nickname = 5 [
+        (validate.rules).string = {min_len: 1, max_len: 60}
+    ];
+     // 头像
+     string avatar = 6 [
+        (validate.rules).string = {min_len: 1, max_len: 255}
+    ];
+    // 微信openId
+    string wx_open_id = 7;
+}
+
+// 响应 - 示例信息
+message User {
+    // 主键id
+    int64 id = 1;
+    // 名称
+    string username = 2;
+    // 密码
+    string password = 3;
+    // 密码盐
+    string salt = 4;
+    // 状态
+    bool status = 5;
+    // 手机号
+    string mobile = 6;
+    // 昵称
+    string nickname = 7;
+    // 头像
+    string avatar = 8;
+    // 微信openId
+    string wx_open_id = 9;
+    // 创建时间
+    string created_at = 10;
+    // 更新时间
+    string updated_at = 11;
+    // 删除时间
+    string deleted_at = 12;
+}
+
+// 响应 - 分页
+message  GetUserListPageRes {
+    // 总数
+    int64 total = 1;
+    // 列表
+    repeated User list = 2;
+}
+
+// 请求 - 分页列表
+message  GetUserListReq {
+    // 主键id
+    int64 page = 1 [
+        (validate.rules).int64.gt = 0
+    ];
+
+    // 页记录数
+    int64 pageSize = 2 [
+        (validate.rules).int64.gt = 0
+    ];
+
+    // 名称
+    string username = 3;
+    // 状态 true正常 false冻结
+	google.protobuf.BoolValue status = 4;
+    // 手机号
+    string mobile = 5;
+    // 是否删除
+    google.protobuf.BoolValue is_deleted = 6;
+    // 创建开始时间
+    string created_at_start = 7;
+    // 创建结束时间
+    string created_at_end = 8;
 }
 
 // 请求-管理员登录

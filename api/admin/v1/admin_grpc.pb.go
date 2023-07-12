@@ -62,12 +62,21 @@ const (
 	Admin_GetApiLogList_FullMethodName        = "/admin.v1.Admin/GetApiLogList"
 	Admin_GetOssStsToken_FullMethodName       = "/admin.v1.Admin/GetOssStsToken"
 	Admin_CreateGptMessage_FullMethodName     = "/admin.v1.Admin/CreateGptMessage"
+	Admin_GetUserList_FullMethodName          = "/admin.v1.Admin/GetUserList"
+	Admin_GetUser_FullMethodName              = "/admin.v1.Admin/GetUser"
+	Admin_CreateUser_FullMethodName           = "/admin.v1.Admin/CreateUser"
+	Admin_UpdateUser_FullMethodName           = "/admin.v1.Admin/UpdateUser"
+	Admin_DeleteUser_FullMethodName           = "/admin.v1.Admin/DeleteUser"
+	Admin_RecoverUser_FullMethodName          = "/admin.v1.Admin/RecoverUser"
+	Admin_ForbidUser_FullMethodName           = "/admin.v1.Admin/ForbidUser"
+	Admin_ApproveUser_FullMethodName          = "/admin.v1.Admin/ApproveUser"
 )
 
 // AdminClient is the client API for Admin service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AdminClient interface {
+	// -------------------------- 管理员服务 ----------------------------------------//
 	// 管理员登陆
 	Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginRes, error)
 	// 管理员退出
@@ -90,64 +99,83 @@ type AdminClient interface {
 	ForbidAdministrator(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*CheckResponse, error)
 	// 管理员解禁
 	ApproveAdministrator(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*CheckResponse, error)
-	// 角色列表
+	// -------------------------- 权限服务 ----------------------------------------//
+	// 权限 —— 角色列表
 	GetRoleAll(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetRoleAllRes, error)
-	// 角色创建
+	// 权限 —— 角色创建
 	CreateRole(ctx context.Context, in *CreateRoleReq, opts ...grpc.CallOption) (*Role, error)
-	// 角色更新
+	// 权限 —— 角色更新
 	UpdateRole(ctx context.Context, in *UpdateRoleReq, opts ...grpc.CallOption) (*CheckResponse, error)
-	// 角色删除
+	// 权限 —— 角色删除
 	DeleteRole(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*CheckResponse, error)
-	// 设置用户角色关系
+	// 权限 —— 设置用户角色关系
 	SetRolesForUser(ctx context.Context, in *SetRolesForUserReq, opts ...grpc.CallOption) (*CheckResponse, error)
-	// 获取用户角色列表
+	// 权限 —— 获取用户角色列表
 	GetRolesForUser(ctx context.Context, in *GetRolesForUserReq, opts ...grpc.CallOption) (*GetRolesForUserRes, error)
-	// 获取角色用户列表
+	// 权限 —— 获取角色用户列表
 	GetUsersForRole(ctx context.Context, in *RoleNameReq, opts ...grpc.CallOption) (*GetUsersForRoleRes, error)
-	// 删除用户某个角色
+	// 权限 —— 删除用户某个角色
 	DeleteRoleForUser(ctx context.Context, in *DeleteRoleForUserReq, opts ...grpc.CallOption) (*CheckResponse, error)
-	// 删除用户所有角色
+	// 权限 —— 删除用户所有角色
 	DeleteRolesForUser(ctx context.Context, in *DeleteRolesForUserReq, opts ...grpc.CallOption) (*CheckResponse, error)
 	// 策略授权规则 - 列表
 	GetPolicies(ctx context.Context, in *RoleNameReq, opts ...grpc.CallOption) (*GetPoliciesRes, error)
-	// 策略授权规则 - 更新
+	// 权限 —— 策略授权规则 - 更新
 	UpdatePolicies(ctx context.Context, in *UpdatePoliciesReq, opts ...grpc.CallOption) (*CheckResponse, error)
-	// 所有Api列表
+	// 权限 —— 所有Api列表
 	GetApiAll(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetApiAllRes, error)
-	// Api列表
+	// 权限 —— Api列表
 	GetApiList(ctx context.Context, in *GetApiListReq, opts ...grpc.CallOption) (*GetApiListRes, error)
-	// Api创建
+	// 权限 —— Api创建
 	CreateApi(ctx context.Context, in *CreateApiReq, opts ...grpc.CallOption) (*Api, error)
-	// Api更新
+	// 权限 —— Api更新
 	UpdateApi(ctx context.Context, in *UpdateApiReq, opts ...grpc.CallOption) (*CheckResponse, error)
-	// Api删除
+	// 权限 —— Api删除
 	DeleteApi(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*CheckResponse, error)
-	// 所有Menu列表
+	// 权限 —— 所有Menu列表
 	GetMenuAll(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMenuTreeRes, error)
-	// Menu列表
+	// 权限 —— Menu列表
 	GetMenuTree(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMenuTreeRes, error)
-	// Menu创建
+	// 权限 —— Menu创建
 	CreateMenu(ctx context.Context, in *CreateMenuReq, opts ...grpc.CallOption) (*Menu, error)
-	// Menu更新
+	// 权限 —— Menu更新
 	UpdateMenu(ctx context.Context, in *UpdateMenuReq, opts ...grpc.CallOption) (*CheckResponse, error)
-	// Menu删除
+	// 权限 —— Menu删除
 	DeleteMenu(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*CheckResponse, error)
-	// 角色菜单列表树
+	// 权限 —— 角色菜单列表树
 	GetRoleMenuTree(ctx context.Context, in *RoleNameReq, opts ...grpc.CallOption) (*GetMenuTreeRes, error)
-	// 角色菜单列表
+	// 权限 —— 角色菜单列表
 	GetRoleMenu(ctx context.Context, in *RoleNameReq, opts ...grpc.CallOption) (*GetMenuTreeRes, error)
-	// 角色菜单更新
+	// 权限 —— 角色菜单更新
 	SetRoleMenu(ctx context.Context, in *SetRoleMenuReq, opts ...grpc.CallOption) (*CheckResponse, error)
-	// 获取角色菜单按钮列表
+	// 权限 —— 获取角色菜单按钮列表
 	GetRoleMenuBtn(ctx context.Context, in *GetRoleMenuBtnReq, opts ...grpc.CallOption) (*GetRoleMenuBtnRes, error)
-	// 保存角色菜单按钮列表
+	// 权限 —— 保存角色菜单按钮列表
 	SetRoleMenuBtn(ctx context.Context, in *SetRoleMenuBtnReq, opts ...grpc.CallOption) (*CheckResponse, error)
-	// 日志列表
+	// -------------------------- 日志服务 ----------------------------------------//
+	// 日志 —— 列表
 	GetApiLogList(ctx context.Context, in *GetApiLogListReq, opts ...grpc.CallOption) (*GetApiLogListRes, error)
-	// OSS STSTOKEN 获取
+	// 文件 ——  OSS STSTOKEN 获取
 	GetOssStsToken(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*OssStsTokenResponse, error)
-	// 创建chatgpt请求数据
+	// -------------------------- CHATGPT服务 ----------------------------------------//
+	// AI —— 创建chatgpt请求数据
 	CreateGptMessage(ctx context.Context, in *CreateGptMessageReq, opts ...grpc.CallOption) (*CreateGptMessageRes, error)
+	// 用户 —— 列表
+	GetUserList(ctx context.Context, in *GetUserListReq, opts ...grpc.CallOption) (*GetUserListPageRes, error)
+	// 用户 —— 详情
+	GetUser(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*User, error)
+	// 用户 —— 创建
+	CreateUser(ctx context.Context, in *CreateUserReq, opts ...grpc.CallOption) (*User, error)
+	// 用户 —— 更新
+	UpdateUser(ctx context.Context, in *UpdateUserReq, opts ...grpc.CallOption) (*CheckResponse, error)
+	// 用户 —— 删除
+	DeleteUser(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*CheckResponse, error)
+	// 用户 —— 恢复
+	RecoverUser(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*CheckResponse, error)
+	// 用户 —— 更改状态
+	ForbidUser(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*CheckResponse, error)
+	// 管理员解禁
+	ApproveUser(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*CheckResponse, error)
 }
 
 type adminClient struct {
@@ -518,10 +546,83 @@ func (c *adminClient) CreateGptMessage(ctx context.Context, in *CreateGptMessage
 	return out, nil
 }
 
+func (c *adminClient) GetUserList(ctx context.Context, in *GetUserListReq, opts ...grpc.CallOption) (*GetUserListPageRes, error) {
+	out := new(GetUserListPageRes)
+	err := c.cc.Invoke(ctx, Admin_GetUserList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminClient) GetUser(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*User, error) {
+	out := new(User)
+	err := c.cc.Invoke(ctx, Admin_GetUser_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminClient) CreateUser(ctx context.Context, in *CreateUserReq, opts ...grpc.CallOption) (*User, error) {
+	out := new(User)
+	err := c.cc.Invoke(ctx, Admin_CreateUser_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminClient) UpdateUser(ctx context.Context, in *UpdateUserReq, opts ...grpc.CallOption) (*CheckResponse, error) {
+	out := new(CheckResponse)
+	err := c.cc.Invoke(ctx, Admin_UpdateUser_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminClient) DeleteUser(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*CheckResponse, error) {
+	out := new(CheckResponse)
+	err := c.cc.Invoke(ctx, Admin_DeleteUser_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminClient) RecoverUser(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*CheckResponse, error) {
+	out := new(CheckResponse)
+	err := c.cc.Invoke(ctx, Admin_RecoverUser_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminClient) ForbidUser(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*CheckResponse, error) {
+	out := new(CheckResponse)
+	err := c.cc.Invoke(ctx, Admin_ForbidUser_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminClient) ApproveUser(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*CheckResponse, error) {
+	out := new(CheckResponse)
+	err := c.cc.Invoke(ctx, Admin_ApproveUser_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminServer is the server API for Admin service.
 // All implementations must embed UnimplementedAdminServer
 // for forward compatibility
 type AdminServer interface {
+	// -------------------------- 管理员服务 ----------------------------------------//
 	// 管理员登陆
 	Login(context.Context, *LoginReq) (*LoginRes, error)
 	// 管理员退出
@@ -544,64 +645,83 @@ type AdminServer interface {
 	ForbidAdministrator(context.Context, *IdReq) (*CheckResponse, error)
 	// 管理员解禁
 	ApproveAdministrator(context.Context, *IdReq) (*CheckResponse, error)
-	// 角色列表
+	// -------------------------- 权限服务 ----------------------------------------//
+	// 权限 —— 角色列表
 	GetRoleAll(context.Context, *emptypb.Empty) (*GetRoleAllRes, error)
-	// 角色创建
+	// 权限 —— 角色创建
 	CreateRole(context.Context, *CreateRoleReq) (*Role, error)
-	// 角色更新
+	// 权限 —— 角色更新
 	UpdateRole(context.Context, *UpdateRoleReq) (*CheckResponse, error)
-	// 角色删除
+	// 权限 —— 角色删除
 	DeleteRole(context.Context, *IdReq) (*CheckResponse, error)
-	// 设置用户角色关系
+	// 权限 —— 设置用户角色关系
 	SetRolesForUser(context.Context, *SetRolesForUserReq) (*CheckResponse, error)
-	// 获取用户角色列表
+	// 权限 —— 获取用户角色列表
 	GetRolesForUser(context.Context, *GetRolesForUserReq) (*GetRolesForUserRes, error)
-	// 获取角色用户列表
+	// 权限 —— 获取角色用户列表
 	GetUsersForRole(context.Context, *RoleNameReq) (*GetUsersForRoleRes, error)
-	// 删除用户某个角色
+	// 权限 —— 删除用户某个角色
 	DeleteRoleForUser(context.Context, *DeleteRoleForUserReq) (*CheckResponse, error)
-	// 删除用户所有角色
+	// 权限 —— 删除用户所有角色
 	DeleteRolesForUser(context.Context, *DeleteRolesForUserReq) (*CheckResponse, error)
 	// 策略授权规则 - 列表
 	GetPolicies(context.Context, *RoleNameReq) (*GetPoliciesRes, error)
-	// 策略授权规则 - 更新
+	// 权限 —— 策略授权规则 - 更新
 	UpdatePolicies(context.Context, *UpdatePoliciesReq) (*CheckResponse, error)
-	// 所有Api列表
+	// 权限 —— 所有Api列表
 	GetApiAll(context.Context, *emptypb.Empty) (*GetApiAllRes, error)
-	// Api列表
+	// 权限 —— Api列表
 	GetApiList(context.Context, *GetApiListReq) (*GetApiListRes, error)
-	// Api创建
+	// 权限 —— Api创建
 	CreateApi(context.Context, *CreateApiReq) (*Api, error)
-	// Api更新
+	// 权限 —— Api更新
 	UpdateApi(context.Context, *UpdateApiReq) (*CheckResponse, error)
-	// Api删除
+	// 权限 —— Api删除
 	DeleteApi(context.Context, *IdReq) (*CheckResponse, error)
-	// 所有Menu列表
+	// 权限 —— 所有Menu列表
 	GetMenuAll(context.Context, *emptypb.Empty) (*GetMenuTreeRes, error)
-	// Menu列表
+	// 权限 —— Menu列表
 	GetMenuTree(context.Context, *emptypb.Empty) (*GetMenuTreeRes, error)
-	// Menu创建
+	// 权限 —— Menu创建
 	CreateMenu(context.Context, *CreateMenuReq) (*Menu, error)
-	// Menu更新
+	// 权限 —— Menu更新
 	UpdateMenu(context.Context, *UpdateMenuReq) (*CheckResponse, error)
-	// Menu删除
+	// 权限 —— Menu删除
 	DeleteMenu(context.Context, *IdReq) (*CheckResponse, error)
-	// 角色菜单列表树
+	// 权限 —— 角色菜单列表树
 	GetRoleMenuTree(context.Context, *RoleNameReq) (*GetMenuTreeRes, error)
-	// 角色菜单列表
+	// 权限 —— 角色菜单列表
 	GetRoleMenu(context.Context, *RoleNameReq) (*GetMenuTreeRes, error)
-	// 角色菜单更新
+	// 权限 —— 角色菜单更新
 	SetRoleMenu(context.Context, *SetRoleMenuReq) (*CheckResponse, error)
-	// 获取角色菜单按钮列表
+	// 权限 —— 获取角色菜单按钮列表
 	GetRoleMenuBtn(context.Context, *GetRoleMenuBtnReq) (*GetRoleMenuBtnRes, error)
-	// 保存角色菜单按钮列表
+	// 权限 —— 保存角色菜单按钮列表
 	SetRoleMenuBtn(context.Context, *SetRoleMenuBtnReq) (*CheckResponse, error)
-	// 日志列表
+	// -------------------------- 日志服务 ----------------------------------------//
+	// 日志 —— 列表
 	GetApiLogList(context.Context, *GetApiLogListReq) (*GetApiLogListRes, error)
-	// OSS STSTOKEN 获取
+	// 文件 ——  OSS STSTOKEN 获取
 	GetOssStsToken(context.Context, *emptypb.Empty) (*OssStsTokenResponse, error)
-	// 创建chatgpt请求数据
+	// -------------------------- CHATGPT服务 ----------------------------------------//
+	// AI —— 创建chatgpt请求数据
 	CreateGptMessage(context.Context, *CreateGptMessageReq) (*CreateGptMessageRes, error)
+	// 用户 —— 列表
+	GetUserList(context.Context, *GetUserListReq) (*GetUserListPageRes, error)
+	// 用户 —— 详情
+	GetUser(context.Context, *IdReq) (*User, error)
+	// 用户 —— 创建
+	CreateUser(context.Context, *CreateUserReq) (*User, error)
+	// 用户 —— 更新
+	UpdateUser(context.Context, *UpdateUserReq) (*CheckResponse, error)
+	// 用户 —— 删除
+	DeleteUser(context.Context, *IdReq) (*CheckResponse, error)
+	// 用户 —— 恢复
+	RecoverUser(context.Context, *IdReq) (*CheckResponse, error)
+	// 用户 —— 更改状态
+	ForbidUser(context.Context, *IdReq) (*CheckResponse, error)
+	// 管理员解禁
+	ApproveUser(context.Context, *IdReq) (*CheckResponse, error)
 	mustEmbedUnimplementedAdminServer()
 }
 
@@ -728,6 +848,30 @@ func (UnimplementedAdminServer) GetOssStsToken(context.Context, *emptypb.Empty) 
 }
 func (UnimplementedAdminServer) CreateGptMessage(context.Context, *CreateGptMessageReq) (*CreateGptMessageRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateGptMessage not implemented")
+}
+func (UnimplementedAdminServer) GetUserList(context.Context, *GetUserListReq) (*GetUserListPageRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserList not implemented")
+}
+func (UnimplementedAdminServer) GetUser(context.Context, *IdReq) (*User, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
+}
+func (UnimplementedAdminServer) CreateUser(context.Context, *CreateUserReq) (*User, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
+}
+func (UnimplementedAdminServer) UpdateUser(context.Context, *UpdateUserReq) (*CheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
+}
+func (UnimplementedAdminServer) DeleteUser(context.Context, *IdReq) (*CheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
+}
+func (UnimplementedAdminServer) RecoverUser(context.Context, *IdReq) (*CheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RecoverUser not implemented")
+}
+func (UnimplementedAdminServer) ForbidUser(context.Context, *IdReq) (*CheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ForbidUser not implemented")
+}
+func (UnimplementedAdminServer) ApproveUser(context.Context, *IdReq) (*CheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ApproveUser not implemented")
 }
 func (UnimplementedAdminServer) mustEmbedUnimplementedAdminServer() {}
 
@@ -1462,6 +1606,150 @@ func _Admin_CreateGptMessage_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Admin_GetUserList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).GetUserList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Admin_GetUserList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).GetUserList(ctx, req.(*GetUserListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Admin_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).GetUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Admin_GetUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).GetUser(ctx, req.(*IdReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Admin_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUserReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).CreateUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Admin_CreateUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).CreateUser(ctx, req.(*CreateUserReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Admin_UpdateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateUserReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).UpdateUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Admin_UpdateUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).UpdateUser(ctx, req.(*UpdateUserReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Admin_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).DeleteUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Admin_DeleteUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).DeleteUser(ctx, req.(*IdReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Admin_RecoverUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).RecoverUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Admin_RecoverUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).RecoverUser(ctx, req.(*IdReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Admin_ForbidUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).ForbidUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Admin_ForbidUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).ForbidUser(ctx, req.(*IdReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Admin_ApproveUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).ApproveUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Admin_ApproveUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).ApproveUser(ctx, req.(*IdReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Admin_ServiceDesc is the grpc.ServiceDesc for Admin service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1628,6 +1916,38 @@ var Admin_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateGptMessage",
 			Handler:    _Admin_CreateGptMessage_Handler,
+		},
+		{
+			MethodName: "GetUserList",
+			Handler:    _Admin_GetUserList_Handler,
+		},
+		{
+			MethodName: "GetUser",
+			Handler:    _Admin_GetUser_Handler,
+		},
+		{
+			MethodName: "CreateUser",
+			Handler:    _Admin_CreateUser_Handler,
+		},
+		{
+			MethodName: "UpdateUser",
+			Handler:    _Admin_UpdateUser_Handler,
+		},
+		{
+			MethodName: "DeleteUser",
+			Handler:    _Admin_DeleteUser_Handler,
+		},
+		{
+			MethodName: "RecoverUser",
+			Handler:    _Admin_RecoverUser_Handler,
+		},
+		{
+			MethodName: "ForbidUser",
+			Handler:    _Admin_ForbidUser_Handler,
+		},
+		{
+			MethodName: "ApproveUser",
+			Handler:    _Admin_ApproveUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
