@@ -17,8 +17,9 @@ import (
 	"github.com/go-redis/redis"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	authorizationV1 "github.com/ZQCard/kbk-authorization/api/authorization/v1"
 	"github.com/ZQCard/kbk-bff-admin/pkg/utils/redisHelper"
+
+	authorizationV1 "github.com/ZQCard/kbk-authorization/api/authorization/v1"
 	logV1 "github.com/ZQCard/kbk-log/api/log/v1"
 )
 

@@ -1,34 +1,33 @@
 service:
-  name: adminInterface
+  name: bff-admin
   version: v1
 env:
   mode: dev
 server:
   http:
     addr: 0.0.0.0:8000
-    timeout: 10s
+    timeout: 60s
   grpc:
     addr: 0.0.0.0:9000
-    timeout: 10s
-trace:
-  endpoint: http://127.0.0.1:14268/api/traces
-etcd:
-  address: 127.0.0.1:2379
+    timeout: 60s
 auth:
-  service_key: "kratos-base-project-admin-service-key"
-  api_key: "kratos-base-project-admin-api-key"
+  service_key: "kbk_"
+  api_key: "kbk_"
   api_key_expire: "86400"
 data:
   redis:
-    addr: "127.0.0.1:6379"
+    addr: 127.0.0.1:6379
     password: ""
-    read_timeout: "0.2s"
-    write_timeout: "0.2s"
+    read_timeout: 0.2s
+    write_timeout: 0.2s
+    prefix: kbk_
 endpoint:
-  time_out: "10s"
-  administrator: discovery:///kbk.administrator.service
-  authorization: discovery:///kbk.authorization.service
-  log: discovery:///kbk.log.service
-  file: discovery:///kbk.file.service
-  ai: discovery:///kbk.ai.service
-  notice: discovery:///kbk.notice.service
+  time_out: 60s
+  administrator: administrator.kbk:9000
+  authorization: authorization.kbk:9000
+  log: kbk-log.kbk:9000
+  oss: oss.kbk:9000
+jwt:
+  key: "kbk-admin"
+  expire: 86400s
+  issuer: "zhouqi"  

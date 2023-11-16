@@ -5,7 +5,6 @@ import (
 
 	"github.com/go-redis/redis"
 	jwt2 "github.com/golang-jwt/jwt/v4"
-	tracesdk "go.opentelemetry.io/otel/sdk/trace"
 
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/auth/jwt"
@@ -17,14 +16,15 @@ import (
 	"github.com/go-kratos/kratos/v2/transport/http"
 	"github.com/go-kratos/swagger-api/openapiv2"
 
-	authorizationV1 "github.com/ZQCard/kbk-authorization/api/authorization/v1"
-	adminV1 "github.com/ZQCard/kbk-bff-admin/api/admin/v1"
+	adminV1 "github.com/ZQCard/kbk-bff-admin/api/bff-admin/v1"
 	"github.com/ZQCard/kbk-bff-admin/internal/conf"
 	"github.com/ZQCard/kbk-bff-admin/internal/service"
 	"github.com/ZQCard/kbk-bff-admin/pkg/middleware/apiLog"
 	"github.com/ZQCard/kbk-bff-admin/pkg/middleware/auth"
 	"github.com/ZQCard/kbk-bff-admin/pkg/middleware/requestInfo"
 	"github.com/ZQCard/kbk-bff-admin/pkg/middleware/userInfo"
+
+	authorizationV1 "github.com/ZQCard/kbk-authorization/api/authorization/v1"
 	logV1 "github.com/ZQCard/kbk-log/api/log/v1"
 )
 
@@ -43,9 +43,8 @@ func NewWhiteListMatcher() selector.MatchFunc {
 // NewHTTPServer new an HTTP server.
 func NewHTTPServer(
 	c *conf.Server,
-	ac *conf.Auth,
+	cfg *conf.Bootstrap,
 	service *service.AdminInterface,
-	tp *tracesdk.TracerProvider,
 	authorizationClient authorizationV1.AuthorizationServiceClient,
 	logger log.Logger,
 	logClient logV1.LogServiceClient,
@@ -64,7 +63,7 @@ func NewHTTPServer(
 			selector.Server(
 				// 解析jwt
 				jwt.Server(func(token *jwt2.Token) (interface{}, error) {
-					return []byte(ac.ApiKey), nil
+					return []byte(cfg.Jwt.Key), nil
 				},
 					jwt.WithSigningMethod(jwt2.SigningMethodHS256),
 					jwt.WithClaims(func() jwt2.Claims {

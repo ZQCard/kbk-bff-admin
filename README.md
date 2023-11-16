@@ -1,4 +1,4 @@
-# Kratos Base Project
+# Charging Station
 
 本项目基于 [kratos框架](https://github.com/go-kratos/kratos) 搭建基础微服务项目，开发各种独立服务,bff层作为入口，整合各个服务。
 
@@ -40,18 +40,18 @@ orm: GORM
 ##### 数据库
 1.导入sql
 ```
-文件位于initSql/kbk-authorization.sql
+文件位于initSql/authorization.sql
 ```
 
 ##### 后端
 1.下载
 ```
-$ go clone git@github.com:ZQCard/kbk-authorization.git
+$ go clone git@github.com:ZQCard/authorization.git
 ```
 
 2.安装依赖
 ```
-$ cd kbk-authorization && go mod tidy
+$ cd authorization && go mod tidy
 ```
 
 3.设置配置 以管理员服务为例, 配置文件位于configs/
@@ -69,7 +69,7 @@ $ kratos run
 $ make docker
 ```
 
-##### [管理后台前端](https://github.com/ZQCard/kbk-frontend)
+##### [管理后台前端](https://repo.example.com/frontend)
 1.安装依赖
 ```
 $ cd web && npm install

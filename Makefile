@@ -52,7 +52,7 @@ api:
 .PHONY: build
 # build
 build:
-	mkdir -p bin/ && go build -ldflags "-X main.Version=$(VERSION)" -o ./bin/ ./...
+	mkdir -p bin/ && GOPROXY=https://goproxy.cn CGO_ENABLED=0 GOOS=linux go build -ldflags "-X main.Version=$(VERSION)" -o ./bin/ ./...
 
 .PHONY: generate
 # generate
@@ -115,17 +115,3 @@ initNewService:
 # 拉取引用包
 	go mod tidy
 	@echo "project start success"
-.PHONY: docker
-docker:
-	@git pull
-	@docker build -t kbk-bff-admin .
-	@echo "docker build success"
-	@container_id=$$(docker ps -a -f name=kbk-bff-admin -q); \
-    if [ -n "$$container_id" ]; then \
-        docker rm -f "$$container_id"; \
-        echo "Container kbk-bff-admin deleted"; \
-    else \
-        echo "Container kbk-bff-admin not found"; \
-    fi
-	docker run -itd --name kbk-bff-admin -p 8000:8000 -p 9000:9000 -v /data/project/kratos-base-kit/kbk-bff-admin/configs/:/data/conf kbk-bff-admin
-	@echo "docker start success"

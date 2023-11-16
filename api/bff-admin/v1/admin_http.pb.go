@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-http v2.5.2
 // - protoc             v4.23.0--rc1
-// source: admin/v1/admin.proto
+// source: bff-admin/v1/admin.proto
 
-package admin
+package v1
 
 import (
 	context "context"
@@ -21,22 +21,17 @@ var _ = binding.EncodeURL
 const _ = http.SupportPackageIsVersion1
 
 const OperationAdminapproveAdministrator = "/admin.v1.Admin/approveAdministrator"
-const OperationAdminApproveUser = "/admin.v1.Admin/ApproveUser"
 const OperationAdminCreateAdministrator = "/admin.v1.Admin/CreateAdministrator"
 const OperationAdminCreateApi = "/admin.v1.Admin/CreateApi"
-const OperationAdminCreateGptMessage = "/admin.v1.Admin/CreateGptMessage"
 const OperationAdminCreateMenu = "/admin.v1.Admin/CreateMenu"
 const OperationAdminCreateRole = "/admin.v1.Admin/CreateRole"
-const OperationAdminCreateUser = "/admin.v1.Admin/CreateUser"
 const OperationAdminDeleteAdministrator = "/admin.v1.Admin/DeleteAdministrator"
 const OperationAdminDeleteApi = "/admin.v1.Admin/DeleteApi"
 const OperationAdminDeleteMenu = "/admin.v1.Admin/DeleteMenu"
 const OperationAdminDeleteRole = "/admin.v1.Admin/DeleteRole"
 const OperationAdminDeleteRoleForUser = "/admin.v1.Admin/DeleteRoleForUser"
 const OperationAdminDeleteRolesForUser = "/admin.v1.Admin/DeleteRolesForUser"
-const OperationAdminDeleteUser = "/admin.v1.Admin/DeleteUser"
 const OperationAdminforbidAdministrator = "/admin.v1.Admin/forbidAdministrator"
-const OperationAdminForbidUser = "/admin.v1.Admin/ForbidUser"
 const OperationAdminGetAdministrator = "/admin.v1.Admin/GetAdministrator"
 const OperationAdminGetAdministratorInfo = "/admin.v1.Admin/GetAdministratorInfo"
 const OperationAdminGetAdministratorList = "/admin.v1.Admin/GetAdministratorList"
@@ -52,13 +47,10 @@ const OperationAdminGetRoleMenu = "/admin.v1.Admin/GetRoleMenu"
 const OperationAdminGetRoleMenuBtn = "/admin.v1.Admin/GetRoleMenuBtn"
 const OperationAdminGetRoleMenuTree = "/admin.v1.Admin/GetRoleMenuTree"
 const OperationAdminGetRolesForUser = "/admin.v1.Admin/GetRolesForUser"
-const OperationAdminGetUser = "/admin.v1.Admin/GetUser"
-const OperationAdminGetUserList = "/admin.v1.Admin/GetUserList"
 const OperationAdminGetUsersForRole = "/admin.v1.Admin/GetUsersForRole"
 const OperationAdminLogin = "/admin.v1.Admin/Login"
 const OperationAdminLoginOut = "/admin.v1.Admin/LoginOut"
 const OperationAdminRecoverAdministrator = "/admin.v1.Admin/RecoverAdministrator"
-const OperationAdminRecoverUser = "/admin.v1.Admin/RecoverUser"
 const OperationAdminSetRoleMenu = "/admin.v1.Admin/SetRoleMenu"
 const OperationAdminSetRoleMenuBtn = "/admin.v1.Admin/SetRoleMenuBtn"
 const OperationAdminSetRolesForUser = "/admin.v1.Admin/SetRolesForUser"
@@ -67,26 +59,20 @@ const OperationAdminUpdateApi = "/admin.v1.Admin/UpdateApi"
 const OperationAdminUpdateMenu = "/admin.v1.Admin/UpdateMenu"
 const OperationAdminUpdatePolicies = "/admin.v1.Admin/UpdatePolicies"
 const OperationAdminUpdateRole = "/admin.v1.Admin/UpdateRole"
-const OperationAdminUpdateUser = "/admin.v1.Admin/UpdateUser"
 
 type AdminHTTPServer interface {
-	ApproveAdministrator(context.Context, *IdReq) (*CheckResponse, error)
-	ApproveUser(context.Context, *IdReq) (*CheckResponse, error)
+	ApproveAdministrator(context.Context, *IdReq) (*emptypb.Empty, error)
 	CreateAdministrator(context.Context, *CreateAdministratorReq) (*Administrator, error)
 	CreateApi(context.Context, *CreateApiReq) (*Api, error)
-	CreateGptMessage(context.Context, *CreateGptMessageReq) (*CreateGptMessageRes, error)
 	CreateMenu(context.Context, *CreateMenuReq) (*Menu, error)
 	CreateRole(context.Context, *CreateRoleReq) (*Role, error)
-	CreateUser(context.Context, *CreateUserReq) (*User, error)
-	DeleteAdministrator(context.Context, *IdReq) (*CheckResponse, error)
-	DeleteApi(context.Context, *IdReq) (*CheckResponse, error)
-	DeleteMenu(context.Context, *IdReq) (*CheckResponse, error)
-	DeleteRole(context.Context, *IdReq) (*CheckResponse, error)
-	DeleteRoleForUser(context.Context, *DeleteRoleForUserReq) (*CheckResponse, error)
-	DeleteRolesForUser(context.Context, *DeleteRolesForUserReq) (*CheckResponse, error)
-	DeleteUser(context.Context, *IdReq) (*CheckResponse, error)
-	ForbidAdministrator(context.Context, *IdReq) (*CheckResponse, error)
-	ForbidUser(context.Context, *IdReq) (*CheckResponse, error)
+	DeleteAdministrator(context.Context, *IdReq) (*emptypb.Empty, error)
+	DeleteApi(context.Context, *IdReq) (*emptypb.Empty, error)
+	DeleteMenu(context.Context, *IdReq) (*emptypb.Empty, error)
+	DeleteRole(context.Context, *IdReq) (*emptypb.Empty, error)
+	DeleteRoleForUser(context.Context, *DeleteRoleForUserReq) (*emptypb.Empty, error)
+	DeleteRolesForUser(context.Context, *DeleteRolesForUserReq) (*emptypb.Empty, error)
+	ForbidAdministrator(context.Context, *IdReq) (*emptypb.Empty, error)
 	GetAdministrator(context.Context, *IdReq) (*Administrator, error)
 	GetAdministratorInfo(context.Context, *emptypb.Empty) (*Administrator, error)
 	GetAdministratorList(context.Context, *GetAdministratorListReq) (*GetAdministratorListPageRes, error)
@@ -102,22 +88,18 @@ type AdminHTTPServer interface {
 	GetRoleMenuBtn(context.Context, *GetRoleMenuBtnReq) (*GetRoleMenuBtnRes, error)
 	GetRoleMenuTree(context.Context, *RoleNameReq) (*GetMenuTreeRes, error)
 	GetRolesForUser(context.Context, *GetRolesForUserReq) (*GetRolesForUserRes, error)
-	GetUser(context.Context, *IdReq) (*User, error)
-	GetUserList(context.Context, *GetUserListReq) (*GetUserListPageRes, error)
 	GetUsersForRole(context.Context, *RoleNameReq) (*GetUsersForRoleRes, error)
 	Login(context.Context, *LoginReq) (*LoginRes, error)
-	LoginOut(context.Context, *emptypb.Empty) (*CheckResponse, error)
-	RecoverAdministrator(context.Context, *IdReq) (*CheckResponse, error)
-	RecoverUser(context.Context, *IdReq) (*CheckResponse, error)
-	SetRoleMenu(context.Context, *SetRoleMenuReq) (*CheckResponse, error)
-	SetRoleMenuBtn(context.Context, *SetRoleMenuBtnReq) (*CheckResponse, error)
-	SetRolesForUser(context.Context, *SetRolesForUserReq) (*CheckResponse, error)
-	UpdateAdministrator(context.Context, *UpdateAdministratorReq) (*CheckResponse, error)
-	UpdateApi(context.Context, *UpdateApiReq) (*CheckResponse, error)
-	UpdateMenu(context.Context, *UpdateMenuReq) (*CheckResponse, error)
-	UpdatePolicies(context.Context, *UpdatePoliciesReq) (*CheckResponse, error)
-	UpdateRole(context.Context, *UpdateRoleReq) (*CheckResponse, error)
-	UpdateUser(context.Context, *UpdateUserReq) (*CheckResponse, error)
+	LoginOut(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	RecoverAdministrator(context.Context, *IdReq) (*emptypb.Empty, error)
+	SetRoleMenu(context.Context, *SetRoleMenuReq) (*emptypb.Empty, error)
+	SetRoleMenuBtn(context.Context, *SetRoleMenuBtnReq) (*emptypb.Empty, error)
+	SetRolesForUser(context.Context, *SetRolesForUserReq) (*emptypb.Empty, error)
+	UpdateAdministrator(context.Context, *UpdateAdministratorReq) (*emptypb.Empty, error)
+	UpdateApi(context.Context, *UpdateApiReq) (*emptypb.Empty, error)
+	UpdateMenu(context.Context, *UpdateMenuReq) (*emptypb.Empty, error)
+	UpdatePolicies(context.Context, *UpdatePoliciesReq) (*emptypb.Empty, error)
+	UpdateRole(context.Context, *UpdateRoleReq) (*emptypb.Empty, error)
 }
 
 func RegisterAdminHTTPServer(s *http.Server, srv AdminHTTPServer) {
@@ -161,15 +143,6 @@ func RegisterAdminHTTPServer(s *http.Server, srv AdminHTTPServer) {
 	r.POST("/admin/v1/authorization/roleMenuBtn", _Admin_SetRoleMenuBtn0_HTTP_Handler(srv))
 	r.GET("/admin/v1/log/list", _Admin_GetApiLogList0_HTTP_Handler(srv))
 	r.GET("/admin/v1/oss/token", _Admin_GetOssStsToken0_HTTP_Handler(srv))
-	r.POST("/admin/v1/ai/chatgpt/message", _Admin_CreateGptMessage0_HTTP_Handler(srv))
-	r.GET("/admin/v1/user", _Admin_GetUserList0_HTTP_Handler(srv))
-	r.GET("/admin/v1/user/{id}", _Admin_GetUser0_HTTP_Handler(srv))
-	r.POST("/admin/v1/user", _Admin_CreateUser0_HTTP_Handler(srv))
-	r.PUT("/admin/v1/user", _Admin_UpdateUser0_HTTP_Handler(srv))
-	r.DELETE("/admin/v1/user", _Admin_DeleteUser0_HTTP_Handler(srv))
-	r.PATCH("/admin/v1/user", _Admin_RecoverUser0_HTTP_Handler(srv))
-	r.PATCH("/admin/v1/user/forbid", _Admin_ForbidUser0_HTTP_Handler(srv))
-	r.PATCH("/admin/v1/user/approve", _Admin_ApproveUser0_HTTP_Handler(srv))
 }
 
 func _Admin_Login0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context) error {
@@ -205,7 +178,7 @@ func _Admin_LoginOut0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context) e
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -300,7 +273,7 @@ func _Admin_UpdateAdministrator0_HTTP_Handler(srv AdminHTTPServer) func(ctx http
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -319,7 +292,7 @@ func _Admin_DeleteAdministrator0_HTTP_Handler(srv AdminHTTPServer) func(ctx http
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -338,7 +311,7 @@ func _Admin_RecoverAdministrator0_HTTP_Handler(srv AdminHTTPServer) func(ctx htt
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -357,7 +330,7 @@ func _Admin_ForbidAdministrator0_HTTP_Handler(srv AdminHTTPServer) func(ctx http
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -376,7 +349,7 @@ func _Admin_ApproveAdministrator0_HTTP_Handler(srv AdminHTTPServer) func(ctx htt
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -433,7 +406,7 @@ func _Admin_UpdateRole0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context)
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -452,7 +425,7 @@ func _Admin_DeleteRole0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context)
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -471,7 +444,7 @@ func _Admin_SetRolesForUser0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Con
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -528,7 +501,7 @@ func _Admin_DeleteRoleForUser0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.C
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -547,7 +520,7 @@ func _Admin_DeleteRolesForUser0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -585,7 +558,7 @@ func _Admin_UpdatePolicies0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Cont
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -661,7 +634,7 @@ func _Admin_UpdateApi0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context) 
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -680,7 +653,7 @@ func _Admin_DeleteApi0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context) 
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -756,7 +729,7 @@ func _Admin_UpdateMenu0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context)
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -775,7 +748,7 @@ func _Admin_DeleteMenu0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context)
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -832,7 +805,7 @@ func _Admin_SetRoleMenu0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -870,7 +843,7 @@ func _Admin_SetRoleMenuBtn0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Cont
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -913,198 +886,19 @@ func _Admin_GetOssStsToken0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Cont
 	}
 }
 
-func _Admin_CreateGptMessage0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context) error {
-	return func(ctx http.Context) error {
-		var in CreateGptMessageReq
-		if err := ctx.Bind(&in); err != nil {
-			return err
-		}
-		http.SetOperation(ctx, OperationAdminCreateGptMessage)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.CreateGptMessage(ctx, req.(*CreateGptMessageReq))
-		})
-		out, err := h(ctx, &in)
-		if err != nil {
-			return err
-		}
-		reply := out.(*CreateGptMessageRes)
-		return ctx.Result(200, reply)
-	}
-}
-
-func _Admin_GetUserList0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context) error {
-	return func(ctx http.Context) error {
-		var in GetUserListReq
-		if err := ctx.BindQuery(&in); err != nil {
-			return err
-		}
-		http.SetOperation(ctx, OperationAdminGetUserList)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.GetUserList(ctx, req.(*GetUserListReq))
-		})
-		out, err := h(ctx, &in)
-		if err != nil {
-			return err
-		}
-		reply := out.(*GetUserListPageRes)
-		return ctx.Result(200, reply)
-	}
-}
-
-func _Admin_GetUser0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context) error {
-	return func(ctx http.Context) error {
-		var in IdReq
-		if err := ctx.BindQuery(&in); err != nil {
-			return err
-		}
-		if err := ctx.BindVars(&in); err != nil {
-			return err
-		}
-		http.SetOperation(ctx, OperationAdminGetUser)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.GetUser(ctx, req.(*IdReq))
-		})
-		out, err := h(ctx, &in)
-		if err != nil {
-			return err
-		}
-		reply := out.(*User)
-		return ctx.Result(200, reply)
-	}
-}
-
-func _Admin_CreateUser0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context) error {
-	return func(ctx http.Context) error {
-		var in CreateUserReq
-		if err := ctx.Bind(&in); err != nil {
-			return err
-		}
-		http.SetOperation(ctx, OperationAdminCreateUser)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.CreateUser(ctx, req.(*CreateUserReq))
-		})
-		out, err := h(ctx, &in)
-		if err != nil {
-			return err
-		}
-		reply := out.(*User)
-		return ctx.Result(200, reply)
-	}
-}
-
-func _Admin_UpdateUser0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context) error {
-	return func(ctx http.Context) error {
-		var in UpdateUserReq
-		if err := ctx.Bind(&in); err != nil {
-			return err
-		}
-		http.SetOperation(ctx, OperationAdminUpdateUser)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.UpdateUser(ctx, req.(*UpdateUserReq))
-		})
-		out, err := h(ctx, &in)
-		if err != nil {
-			return err
-		}
-		reply := out.(*CheckResponse)
-		return ctx.Result(200, reply)
-	}
-}
-
-func _Admin_DeleteUser0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context) error {
-	return func(ctx http.Context) error {
-		var in IdReq
-		if err := ctx.BindQuery(&in); err != nil {
-			return err
-		}
-		http.SetOperation(ctx, OperationAdminDeleteUser)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.DeleteUser(ctx, req.(*IdReq))
-		})
-		out, err := h(ctx, &in)
-		if err != nil {
-			return err
-		}
-		reply := out.(*CheckResponse)
-		return ctx.Result(200, reply)
-	}
-}
-
-func _Admin_RecoverUser0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context) error {
-	return func(ctx http.Context) error {
-		var in IdReq
-		if err := ctx.Bind(&in); err != nil {
-			return err
-		}
-		http.SetOperation(ctx, OperationAdminRecoverUser)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.RecoverUser(ctx, req.(*IdReq))
-		})
-		out, err := h(ctx, &in)
-		if err != nil {
-			return err
-		}
-		reply := out.(*CheckResponse)
-		return ctx.Result(200, reply)
-	}
-}
-
-func _Admin_ForbidUser0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context) error {
-	return func(ctx http.Context) error {
-		var in IdReq
-		if err := ctx.Bind(&in); err != nil {
-			return err
-		}
-		http.SetOperation(ctx, OperationAdminForbidUser)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.ForbidUser(ctx, req.(*IdReq))
-		})
-		out, err := h(ctx, &in)
-		if err != nil {
-			return err
-		}
-		reply := out.(*CheckResponse)
-		return ctx.Result(200, reply)
-	}
-}
-
-func _Admin_ApproveUser0_HTTP_Handler(srv AdminHTTPServer) func(ctx http.Context) error {
-	return func(ctx http.Context) error {
-		var in IdReq
-		if err := ctx.Bind(&in); err != nil {
-			return err
-		}
-		http.SetOperation(ctx, OperationAdminApproveUser)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.ApproveUser(ctx, req.(*IdReq))
-		})
-		out, err := h(ctx, &in)
-		if err != nil {
-			return err
-		}
-		reply := out.(*CheckResponse)
-		return ctx.Result(200, reply)
-	}
-}
-
 type AdminHTTPClient interface {
-	ApproveAdministrator(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	ApproveUser(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
+	ApproveAdministrator(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
 	CreateAdministrator(ctx context.Context, req *CreateAdministratorReq, opts ...http.CallOption) (rsp *Administrator, err error)
 	CreateApi(ctx context.Context, req *CreateApiReq, opts ...http.CallOption) (rsp *Api, err error)
-	CreateGptMessage(ctx context.Context, req *CreateGptMessageReq, opts ...http.CallOption) (rsp *CreateGptMessageRes, err error)
 	CreateMenu(ctx context.Context, req *CreateMenuReq, opts ...http.CallOption) (rsp *Menu, err error)
 	CreateRole(ctx context.Context, req *CreateRoleReq, opts ...http.CallOption) (rsp *Role, err error)
-	CreateUser(ctx context.Context, req *CreateUserReq, opts ...http.CallOption) (rsp *User, err error)
-	DeleteAdministrator(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	DeleteApi(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	DeleteMenu(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	DeleteRole(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	DeleteRoleForUser(ctx context.Context, req *DeleteRoleForUserReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	DeleteRolesForUser(ctx context.Context, req *DeleteRolesForUserReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	DeleteUser(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	ForbidAdministrator(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	ForbidUser(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
+	DeleteAdministrator(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	DeleteApi(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	DeleteMenu(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	DeleteRole(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	DeleteRoleForUser(ctx context.Context, req *DeleteRoleForUserReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	DeleteRolesForUser(ctx context.Context, req *DeleteRolesForUserReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	ForbidAdministrator(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
 	GetAdministrator(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *Administrator, err error)
 	GetAdministratorInfo(ctx context.Context, req *emptypb.Empty, opts ...http.CallOption) (rsp *Administrator, err error)
 	GetAdministratorList(ctx context.Context, req *GetAdministratorListReq, opts ...http.CallOption) (rsp *GetAdministratorListPageRes, err error)
@@ -1120,22 +914,18 @@ type AdminHTTPClient interface {
 	GetRoleMenuBtn(ctx context.Context, req *GetRoleMenuBtnReq, opts ...http.CallOption) (rsp *GetRoleMenuBtnRes, err error)
 	GetRoleMenuTree(ctx context.Context, req *RoleNameReq, opts ...http.CallOption) (rsp *GetMenuTreeRes, err error)
 	GetRolesForUser(ctx context.Context, req *GetRolesForUserReq, opts ...http.CallOption) (rsp *GetRolesForUserRes, err error)
-	GetUser(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *User, err error)
-	GetUserList(ctx context.Context, req *GetUserListReq, opts ...http.CallOption) (rsp *GetUserListPageRes, err error)
 	GetUsersForRole(ctx context.Context, req *RoleNameReq, opts ...http.CallOption) (rsp *GetUsersForRoleRes, err error)
 	Login(ctx context.Context, req *LoginReq, opts ...http.CallOption) (rsp *LoginRes, err error)
-	LoginOut(ctx context.Context, req *emptypb.Empty, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	RecoverAdministrator(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	RecoverUser(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	SetRoleMenu(ctx context.Context, req *SetRoleMenuReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	SetRoleMenuBtn(ctx context.Context, req *SetRoleMenuBtnReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	SetRolesForUser(ctx context.Context, req *SetRolesForUserReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	UpdateAdministrator(ctx context.Context, req *UpdateAdministratorReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	UpdateApi(ctx context.Context, req *UpdateApiReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	UpdateMenu(ctx context.Context, req *UpdateMenuReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	UpdatePolicies(ctx context.Context, req *UpdatePoliciesReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	UpdateRole(ctx context.Context, req *UpdateRoleReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	UpdateUser(ctx context.Context, req *UpdateUserReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
+	LoginOut(ctx context.Context, req *emptypb.Empty, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	RecoverAdministrator(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	SetRoleMenu(ctx context.Context, req *SetRoleMenuReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	SetRoleMenuBtn(ctx context.Context, req *SetRoleMenuBtnReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	SetRolesForUser(ctx context.Context, req *SetRolesForUserReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	UpdateAdministrator(ctx context.Context, req *UpdateAdministratorReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	UpdateApi(ctx context.Context, req *UpdateApiReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	UpdateMenu(ctx context.Context, req *UpdateMenuReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	UpdatePolicies(ctx context.Context, req *UpdatePoliciesReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	UpdateRole(ctx context.Context, req *UpdateRoleReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
 }
 
 type AdminHTTPClientImpl struct {
@@ -1146,24 +936,11 @@ func NewAdminHTTPClient(client *http.Client) AdminHTTPClient {
 	return &AdminHTTPClientImpl{client}
 }
 
-func (c *AdminHTTPClientImpl) ApproveAdministrator(ctx context.Context, in *IdReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) ApproveAdministrator(ctx context.Context, in *IdReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/administrator/approve"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdminapproveAdministrator))
-	opts = append(opts, http.PathTemplate(pattern))
-	err := c.cc.Invoke(ctx, "PATCH", path, in, &out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return &out, err
-}
-
-func (c *AdminHTTPClientImpl) ApproveUser(ctx context.Context, in *IdReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
-	pattern := "/admin/v1/user/approve"
-	path := binding.EncodeURL(pattern, in, false)
-	opts = append(opts, http.Operation(OperationAdminApproveUser))
 	opts = append(opts, http.PathTemplate(pattern))
 	err := c.cc.Invoke(ctx, "PATCH", path, in, &out, opts...)
 	if err != nil {
@@ -1198,19 +975,6 @@ func (c *AdminHTTPClientImpl) CreateApi(ctx context.Context, in *CreateApiReq, o
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) CreateGptMessage(ctx context.Context, in *CreateGptMessageReq, opts ...http.CallOption) (*CreateGptMessageRes, error) {
-	var out CreateGptMessageRes
-	pattern := "/admin/v1/ai/chatgpt/message"
-	path := binding.EncodeURL(pattern, in, false)
-	opts = append(opts, http.Operation(OperationAdminCreateGptMessage))
-	opts = append(opts, http.PathTemplate(pattern))
-	err := c.cc.Invoke(ctx, "POST", path, in, &out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return &out, err
-}
-
 func (c *AdminHTTPClientImpl) CreateMenu(ctx context.Context, in *CreateMenuReq, opts ...http.CallOption) (*Menu, error) {
 	var out Menu
 	pattern := "/admin/v1/authorization/menu"
@@ -1237,21 +1001,8 @@ func (c *AdminHTTPClientImpl) CreateRole(ctx context.Context, in *CreateRoleReq,
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) CreateUser(ctx context.Context, in *CreateUserReq, opts ...http.CallOption) (*User, error) {
-	var out User
-	pattern := "/admin/v1/user"
-	path := binding.EncodeURL(pattern, in, false)
-	opts = append(opts, http.Operation(OperationAdminCreateUser))
-	opts = append(opts, http.PathTemplate(pattern))
-	err := c.cc.Invoke(ctx, "POST", path, in, &out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return &out, err
-}
-
-func (c *AdminHTTPClientImpl) DeleteAdministrator(ctx context.Context, in *IdReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) DeleteAdministrator(ctx context.Context, in *IdReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/administrator"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationAdminDeleteAdministrator))
@@ -1263,8 +1014,8 @@ func (c *AdminHTTPClientImpl) DeleteAdministrator(ctx context.Context, in *IdReq
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) DeleteApi(ctx context.Context, in *IdReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) DeleteApi(ctx context.Context, in *IdReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/authorization/api"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationAdminDeleteApi))
@@ -1276,8 +1027,8 @@ func (c *AdminHTTPClientImpl) DeleteApi(ctx context.Context, in *IdReq, opts ...
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) DeleteMenu(ctx context.Context, in *IdReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) DeleteMenu(ctx context.Context, in *IdReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/authorization/menu"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationAdminDeleteMenu))
@@ -1289,8 +1040,8 @@ func (c *AdminHTTPClientImpl) DeleteMenu(ctx context.Context, in *IdReq, opts ..
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) DeleteRole(ctx context.Context, in *IdReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) DeleteRole(ctx context.Context, in *IdReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/authorization/role"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationAdminDeleteRole))
@@ -1302,8 +1053,8 @@ func (c *AdminHTTPClientImpl) DeleteRole(ctx context.Context, in *IdReq, opts ..
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) DeleteRoleForUser(ctx context.Context, in *DeleteRoleForUserReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) DeleteRoleForUser(ctx context.Context, in *DeleteRoleForUserReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/authorization/deleteRoleForUser"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationAdminDeleteRoleForUser))
@@ -1315,8 +1066,8 @@ func (c *AdminHTTPClientImpl) DeleteRoleForUser(ctx context.Context, in *DeleteR
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) DeleteRolesForUser(ctx context.Context, in *DeleteRolesForUserReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) DeleteRolesForUser(ctx context.Context, in *DeleteRolesForUserReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/authorization/deleteRolesForUser"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationAdminDeleteRolesForUser))
@@ -1328,37 +1079,11 @@ func (c *AdminHTTPClientImpl) DeleteRolesForUser(ctx context.Context, in *Delete
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) DeleteUser(ctx context.Context, in *IdReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
-	pattern := "/admin/v1/user"
-	path := binding.EncodeURL(pattern, in, true)
-	opts = append(opts, http.Operation(OperationAdminDeleteUser))
-	opts = append(opts, http.PathTemplate(pattern))
-	err := c.cc.Invoke(ctx, "DELETE", path, nil, &out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return &out, err
-}
-
-func (c *AdminHTTPClientImpl) ForbidAdministrator(ctx context.Context, in *IdReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) ForbidAdministrator(ctx context.Context, in *IdReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/administrator/forbid"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdminforbidAdministrator))
-	opts = append(opts, http.PathTemplate(pattern))
-	err := c.cc.Invoke(ctx, "PATCH", path, in, &out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return &out, err
-}
-
-func (c *AdminHTTPClientImpl) ForbidUser(ctx context.Context, in *IdReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
-	pattern := "/admin/v1/user/forbid"
-	path := binding.EncodeURL(pattern, in, false)
-	opts = append(opts, http.Operation(OperationAdminForbidUser))
 	opts = append(opts, http.PathTemplate(pattern))
 	err := c.cc.Invoke(ctx, "PATCH", path, in, &out, opts...)
 	if err != nil {
@@ -1562,32 +1287,6 @@ func (c *AdminHTTPClientImpl) GetRolesForUser(ctx context.Context, in *GetRolesF
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) GetUser(ctx context.Context, in *IdReq, opts ...http.CallOption) (*User, error) {
-	var out User
-	pattern := "/admin/v1/user/{id}"
-	path := binding.EncodeURL(pattern, in, true)
-	opts = append(opts, http.Operation(OperationAdminGetUser))
-	opts = append(opts, http.PathTemplate(pattern))
-	err := c.cc.Invoke(ctx, "GET", path, nil, &out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return &out, err
-}
-
-func (c *AdminHTTPClientImpl) GetUserList(ctx context.Context, in *GetUserListReq, opts ...http.CallOption) (*GetUserListPageRes, error) {
-	var out GetUserListPageRes
-	pattern := "/admin/v1/user"
-	path := binding.EncodeURL(pattern, in, true)
-	opts = append(opts, http.Operation(OperationAdminGetUserList))
-	opts = append(opts, http.PathTemplate(pattern))
-	err := c.cc.Invoke(ctx, "GET", path, nil, &out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return &out, err
-}
-
 func (c *AdminHTTPClientImpl) GetUsersForRole(ctx context.Context, in *RoleNameReq, opts ...http.CallOption) (*GetUsersForRoleRes, error) {
 	var out GetUsersForRoleRes
 	pattern := "/admin/v1/authorization/getUsersForRole"
@@ -1614,8 +1313,8 @@ func (c *AdminHTTPClientImpl) Login(ctx context.Context, in *LoginReq, opts ...h
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) LoginOut(ctx context.Context, in *emptypb.Empty, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) LoginOut(ctx context.Context, in *emptypb.Empty, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/logout"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdminLoginOut))
@@ -1627,8 +1326,8 @@ func (c *AdminHTTPClientImpl) LoginOut(ctx context.Context, in *emptypb.Empty, o
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) RecoverAdministrator(ctx context.Context, in *IdReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) RecoverAdministrator(ctx context.Context, in *IdReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/administrator"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdminRecoverAdministrator))
@@ -1640,21 +1339,8 @@ func (c *AdminHTTPClientImpl) RecoverAdministrator(ctx context.Context, in *IdRe
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) RecoverUser(ctx context.Context, in *IdReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
-	pattern := "/admin/v1/user"
-	path := binding.EncodeURL(pattern, in, false)
-	opts = append(opts, http.Operation(OperationAdminRecoverUser))
-	opts = append(opts, http.PathTemplate(pattern))
-	err := c.cc.Invoke(ctx, "PATCH", path, in, &out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return &out, err
-}
-
-func (c *AdminHTTPClientImpl) SetRoleMenu(ctx context.Context, in *SetRoleMenuReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) SetRoleMenu(ctx context.Context, in *SetRoleMenuReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/authorization/roleMenu"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdminSetRoleMenu))
@@ -1666,8 +1352,8 @@ func (c *AdminHTTPClientImpl) SetRoleMenu(ctx context.Context, in *SetRoleMenuRe
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) SetRoleMenuBtn(ctx context.Context, in *SetRoleMenuBtnReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) SetRoleMenuBtn(ctx context.Context, in *SetRoleMenuBtnReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/authorization/roleMenuBtn"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdminSetRoleMenuBtn))
@@ -1679,8 +1365,8 @@ func (c *AdminHTTPClientImpl) SetRoleMenuBtn(ctx context.Context, in *SetRoleMen
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) SetRolesForUser(ctx context.Context, in *SetRolesForUserReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) SetRolesForUser(ctx context.Context, in *SetRolesForUserReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/authorization/setRolesForUser"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdminSetRolesForUser))
@@ -1692,8 +1378,8 @@ func (c *AdminHTTPClientImpl) SetRolesForUser(ctx context.Context, in *SetRolesF
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) UpdateAdministrator(ctx context.Context, in *UpdateAdministratorReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) UpdateAdministrator(ctx context.Context, in *UpdateAdministratorReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/administrator"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdminUpdateAdministrator))
@@ -1705,8 +1391,8 @@ func (c *AdminHTTPClientImpl) UpdateAdministrator(ctx context.Context, in *Updat
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) UpdateApi(ctx context.Context, in *UpdateApiReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) UpdateApi(ctx context.Context, in *UpdateApiReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "admin/v1/authorization/api"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdminUpdateApi))
@@ -1718,8 +1404,8 @@ func (c *AdminHTTPClientImpl) UpdateApi(ctx context.Context, in *UpdateApiReq, o
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) UpdateMenu(ctx context.Context, in *UpdateMenuReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) UpdateMenu(ctx context.Context, in *UpdateMenuReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/authorization/menu"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdminUpdateMenu))
@@ -1731,8 +1417,8 @@ func (c *AdminHTTPClientImpl) UpdateMenu(ctx context.Context, in *UpdateMenuReq,
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) UpdatePolicies(ctx context.Context, in *UpdatePoliciesReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) UpdatePolicies(ctx context.Context, in *UpdatePoliciesReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "admin/v1/authorization/updatePolicies"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdminUpdatePolicies))
@@ -1744,24 +1430,11 @@ func (c *AdminHTTPClientImpl) UpdatePolicies(ctx context.Context, in *UpdatePoli
 	return &out, err
 }
 
-func (c *AdminHTTPClientImpl) UpdateRole(ctx context.Context, in *UpdateRoleReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdminHTTPClientImpl) UpdateRole(ctx context.Context, in *UpdateRoleReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/admin/v1/authorization/role"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdminUpdateRole))
-	opts = append(opts, http.PathTemplate(pattern))
-	err := c.cc.Invoke(ctx, "PUT", path, in, &out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return &out, err
-}
-
-func (c *AdminHTTPClientImpl) UpdateUser(ctx context.Context, in *UpdateUserReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
-	pattern := "/admin/v1/user"
-	path := binding.EncodeURL(pattern, in, false)
-	opts = append(opts, http.Operation(OperationAdminUpdateUser))
 	opts = append(opts, http.PathTemplate(pattern))
 	err := c.cc.Invoke(ctx, "PUT", path, in, &out, opts...)
 	if err != nil {

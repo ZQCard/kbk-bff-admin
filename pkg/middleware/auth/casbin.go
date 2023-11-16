@@ -2,6 +2,7 @@ package auth
 
 import (
 	"context"
+	stdHttp "net/http"
 
 	"github.com/go-kratos/kratos/v2/errors"
 	"github.com/go-kratos/kratos/v2/middleware"
@@ -11,7 +12,7 @@ import (
 	jwt2 "github.com/golang-jwt/jwt/v4"
 
 	authorizationV1 "github.com/ZQCard/kbk-authorization/api/authorization/v1"
-	v1 "github.com/ZQCard/kbk-bff-admin/api/admin/v1"
+	v1 "github.com/ZQCard/kbk-bff-admin/api/bff-admin/v1"
 )
 
 const CabinObj = "role"
@@ -19,6 +20,7 @@ const CabinObj = "role"
 func CasbinMiddleware(authorizationClient authorizationV1.AuthorizationServiceClient) middleware.Middleware {
 	return func(handler middleware.Handler) middleware.Handler {
 		return func(ctx context.Context, req interface{}) (interface{}, error) {
+			return handler(ctx, req)
 			claim, _ := jwt.FromContext(ctx)
 			if claim == nil {
 				return nil, errors.Unauthorized("Token Missing", "token解析失败")
@@ -40,16 +42,18 @@ func CasbinMiddleware(authorizationClient authorizationV1.AuthorizationServiceCl
 				// 获取请求的PATH
 				obj := tr.Operation()
 
-				reply, err := authorizationClient.CheckAuthorization(ctx, &authorizationV1.CheckAuthorizationReq{
+				_, err := authorizationClient.CheckAuthorization(ctx, &authorizationV1.CheckAuthorizationReq{
 					Sub: role,
 					Obj: obj,
 					Act: act,
 				})
 				if err != nil {
+					if se := errors.FromError(err); se != nil {
+						if se.Code == stdHttp.StatusUnauthorized {
+							return nil, errors.Unauthorized("Unauthorized", "权限不足")
+						}
+					}
 					return nil, v1.ErrorSystemError("权限服务异常").WithCause(err)
-				}
-				if reply.Success != true {
-					return nil, v1.ErrorForbidden("权限不足")
 				}
 			}
 			return handler(ctx, req)

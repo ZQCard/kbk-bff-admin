@@ -9,9 +9,10 @@ import (
 	"github.com/go-kratos/kratos/v2/transport"
 	"github.com/go-kratos/kratos/v2/transport/http"
 
-	administratorV1 "github.com/ZQCard/kbk-administrator/api/administrator/v1"
-	v1 "github.com/ZQCard/kbk-bff-admin/api/admin/v1"
+	v1 "github.com/ZQCard/kbk-bff-admin/api/bff-admin/v1"
 	"github.com/ZQCard/kbk-bff-admin/pkg/utils/timeHelper"
+
+	administratorV1 "github.com/ZQCard/kbk-administrator/api/administrator/v1"
 )
 
 func (s *AdminInterface) Login(ctx context.Context, req *v1.LoginReq) (*v1.LoginRes, error) {
@@ -56,10 +57,8 @@ func (s *AdminInterface) Login(ctx context.Context, req *v1.LoginReq) (*v1.Login
 	}, nil
 }
 
-func (s *AdminInterface) LoginOut(ctx context.Context, req *emptypb.Empty) (*v1.CheckResponse, error) {
-	return &v1.CheckResponse{
-		Success: true,
-	}, nil
+func (s *AdminInterface) LoginOut(ctx context.Context, req *emptypb.Empty) (*emptypb.Empty, error) {
+	return &emptypb.Empty{}, nil
 }
 
 func (s *AdminInterface) GetAdministratorList(ctx context.Context, req *v1.GetAdministratorListReq) (*v1.GetAdministratorListPageRes, error) {
@@ -91,21 +90,20 @@ func (s *AdminInterface) CreateAdministrator(ctx context.Context, req *v1.Create
 		return nil, err
 	}
 	// 多个角色放入权限服务中
-	res, err := s.authorizationRepo.SetRolesForUser(ctx, &v1.SetRolesForUserReq{
+	_, err = s.authorizationRepo.SetRolesForUser(ctx, &v1.SetRolesForUserReq{
 		Username: administrator.Username,
 		Roles:    req.Role,
 	})
 	// 授权失败， 删除用户
-	if err != nil || !res.Success {
-		res, err = s.administratorRepo.DeleteAdministrator(ctx, administrator.Id)
-		if err != nil || !res.Success {
-			return nil, errors.InternalServer("SYSTEM ERROR", err.Error())
-		}
+	if err != nil {
+		s.administratorRepo.DeleteAdministrator(ctx, administrator.Id)
+		return nil, errors.InternalServer("SYSTEM ERROR", err.Error())
+
 	}
 	return administrator, nil
 }
 
-func (s *AdminInterface) UpdateAdministrator(ctx context.Context, req *v1.UpdateAdministratorReq) (*v1.CheckResponse, error) {
+func (s *AdminInterface) UpdateAdministrator(ctx context.Context, req *v1.UpdateAdministratorReq) (*emptypb.Empty, error) {
 	administratorReq := &administratorV1.UpdateAdministratorReq{
 		Id:       req.Id,
 		Username: req.Username,
@@ -128,18 +126,18 @@ func (s *AdminInterface) UpdateAdministrator(ctx context.Context, req *v1.Update
 	return reply, nil
 }
 
-func (s *AdminInterface) DeleteAdministrator(ctx context.Context, req *v1.IdReq) (*v1.CheckResponse, error) {
+func (s *AdminInterface) DeleteAdministrator(ctx context.Context, req *v1.IdReq) (*emptypb.Empty, error) {
 	return s.administratorRepo.DeleteAdministrator(ctx, req.Id)
 }
 
-func (s *AdminInterface) RecoverAdministrator(ctx context.Context, req *v1.IdReq) (*v1.CheckResponse, error) {
+func (s *AdminInterface) RecoverAdministrator(ctx context.Context, req *v1.IdReq) (*emptypb.Empty, error) {
 	return s.administratorRepo.RecoverAdministrator(ctx, req.Id)
 }
 
-func (s *AdminInterface) ForbidAdministrator(ctx context.Context, req *v1.IdReq) (*v1.CheckResponse, error) {
+func (s *AdminInterface) ForbidAdministrator(ctx context.Context, req *v1.IdReq) (*emptypb.Empty, error) {
 	return s.administratorRepo.ForbidAdministrator(ctx, req.Id)
 }
 
-func (s *AdminInterface) ApproveAdministrator(ctx context.Context, req *v1.IdReq) (*v1.CheckResponse, error) {
+func (s *AdminInterface) ApproveAdministrator(ctx context.Context, req *v1.IdReq) (*emptypb.Empty, error) {
 	return s.administratorRepo.ApproveAdministrator(ctx, req.Id)
 }

@@ -3,28 +3,24 @@ package data
 import (
 	"context"
 
-	v1 "github.com/ZQCard/kbk-bff-admin/api/admin/v1"
+	v1 "github.com/ZQCard/kbk-bff-admin/api/bff-admin/v1"
 	"github.com/ZQCard/kbk-bff-admin/internal/conf"
+
 	logV1 "github.com/ZQCard/kbk-log/api/log/v1"
 	"golang.org/x/sync/singleflight"
 
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/metadata"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
-	"github.com/go-kratos/kratos/v2/middleware/tracing"
-	"github.com/go-kratos/kratos/v2/registry"
 	"github.com/go-kratos/kratos/v2/transport/grpc"
-	tracesdk "go.opentelemetry.io/otel/sdk/trace"
 )
 
-func NewApiLogClient(sr *conf.Endpoint, r registry.Discovery, tp *tracesdk.TracerProvider) logV1.LogServiceClient {
+func NewApiLogClient(sr *conf.Endpoint) logV1.LogServiceClient {
 	conn, err := grpc.DialInsecure(
 		context.Background(),
 		grpc.WithEndpoint(sr.Log),
-		grpc.WithDiscovery(r),
 		grpc.WithMiddleware(
 			recovery.Recovery(),
-			tracing.Client(tracing.WithTracerProvider(tp)),
 			// 元信息
 			metadata.Client(),
 		),

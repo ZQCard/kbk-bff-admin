@@ -3,11 +3,11 @@
 
 openapi: 3.0.3
 info:
-    title: kbk管理后台bff
-    description: kbk管理后台bff
+    title: 管理后台bff
+    description: 管理后台bff
     contact:
         name: qi.zhou
-        email: card.zhouqi@gmail.com
+        email: 445864742@qq.com
     version: 0.0.1
 paths:
     /admin/v1/administrator:
@@ -44,10 +44,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
         post:
             tags:
                 - Admin
@@ -81,10 +78,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
         patch:
             tags:
                 - Admin
@@ -99,10 +93,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
     /admin/v1/administrator/approve:
         patch:
             tags:
@@ -118,10 +109,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
     /admin/v1/administrator/forbid:
         patch:
             tags:
@@ -137,10 +125,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
     /admin/v1/administratorInfo:
         get:
             tags:
@@ -210,27 +195,6 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/admin.v1.GetAdministratorListPageRes'
-    /admin/v1/ai/chatgpt/message:
-        post:
-            tags:
-                - Admin
-            description: |-
-                -------------------------- CHATGPT服务 ----------------------------------------//
-                 AI —— 创建chatgpt请求数据
-            operationId: Admin_CreateGptMessage
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/admin.v1.CreateGptMessageReq'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CreateGptMessageRes'
     /admin/v1/authorization/api:
         get:
             tags:
@@ -240,7 +204,7 @@ paths:
             parameters:
                 - name: page
                   in: query
-                  description: 主键id
+                  description: 页码
                   schema:
                     type: integer
                     format: int64
@@ -292,10 +256,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
     /admin/v1/authorization/apiAll:
         get:
             tags:
@@ -329,10 +290,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
     /admin/v1/authorization/deleteRolesForUser:
         delete:
             tags:
@@ -348,10 +306,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
     /admin/v1/authorization/getPolicies:
         get:
             tags:
@@ -422,10 +377,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
         post:
             tags:
                 - Admin
@@ -459,10 +411,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
     /admin/v1/authorization/menuAll:
         get:
             tags:
@@ -504,10 +453,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
         post:
             tags:
                 - Admin
@@ -541,10 +487,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
     /admin/v1/authorization/roleMenu:
         get:
             tags:
@@ -577,10 +520,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
     /admin/v1/authorization/roleMenuBtn:
         get:
             tags:
@@ -626,10 +566,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
     /admin/v1/authorization/roleMenuTree:
         get:
             tags:
@@ -678,10 +615,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
     /admin/v1/log/list:
         get:
             tags:
@@ -779,10 +713,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
     /admin/v1/oss/token:
         get:
             tags:
@@ -796,194 +727,6 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/admin.v1.OssStsTokenResponse'
-    /admin/v1/user:
-        get:
-            tags:
-                - Admin
-            description: 用户 —— 列表
-            operationId: Admin_GetUserList
-            parameters:
-                - name: page
-                  in: query
-                  description: 主键id
-                  schema:
-                    type: integer
-                    format: int64
-                - name: pageSize
-                  in: query
-                  description: 页记录数
-                  schema:
-                    type: integer
-                    format: int64
-                - name: username
-                  in: query
-                  description: 名称
-                  schema:
-                    type: string
-                - name: status.value
-                  in: query
-                  description: The bool value.
-                  schema:
-                    type: boolean
-                - name: mobile
-                  in: query
-                  description: 手机号
-                  schema:
-                    type: string
-                - name: isDeleted.value
-                  in: query
-                  description: The bool value.
-                  schema:
-                    type: boolean
-                - name: createdAtStart
-                  in: query
-                  description: 创建开始时间
-                  schema:
-                    type: string
-                - name: createdAtEnd
-                  in: query
-                  description: 创建结束时间
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.GetUserListPageRes'
-        put:
-            tags:
-                - Admin
-            description: 用户 —— 更新
-            operationId: Admin_UpdateUser
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/admin.v1.UpdateUserReq'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
-        post:
-            tags:
-                - Admin
-            description: 用户 —— 创建
-            operationId: Admin_CreateUser
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/admin.v1.CreateUserReq'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.User'
-        delete:
-            tags:
-                - Admin
-            description: 用户 —— 删除
-            operationId: Admin_DeleteUser
-            parameters:
-                - name: id
-                  in: query
-                  description: 主键id
-                  schema:
-                    type: integer
-                    format: int64
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
-        patch:
-            tags:
-                - Admin
-            description: 用户 —— 恢复
-            operationId: Admin_RecoverUser
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/admin.v1.IdReq'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
-    /admin/v1/user/approve:
-        patch:
-            tags:
-                - Admin
-            description: 管理员解禁
-            operationId: Admin_ApproveUser
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/admin.v1.IdReq'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
-    /admin/v1/user/forbid:
-        patch:
-            tags:
-                - Admin
-            description: 用户 —— 更改状态
-            operationId: Admin_ForbidUser
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/admin.v1.IdReq'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
-    /admin/v1/user/{id}:
-        get:
-            tags:
-                - Admin
-            description: 用户 —— 详情
-            operationId: Admin_GetUser
-            parameters:
-                - name: id
-                  in: path
-                  description: 主键id
-                  required: true
-                  schema:
-                    type: integer
-                    format: int64
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.User'
     admin/v1/authorization/api:
         put:
             tags:
@@ -999,10 +742,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
         post:
             tags:
                 - Admin
@@ -1036,10 +776,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/admin.v1.CheckResponse'
+                    content: {}
 components:
     schemas:
         admin.v1.Administrator:
@@ -1165,45 +902,6 @@ components:
                     type: string
                     description: 角色
             description: 响应 - 日志
-        admin.v1.ChatgptChoiceMessageRes:
-            type: object
-            properties:
-                role:
-                    type: string
-                content:
-                    type: string
-        admin.v1.ChatgptChoiceRes:
-            type: object
-            properties:
-                finishReason:
-                    type: string
-                index:
-                    type: string
-                message:
-                    $ref: '#/components/schemas/admin.v1.ChatgptChoiceMessageRes'
-        admin.v1.ChatgptMessageReq:
-            type: object
-            properties:
-                role:
-                    type: string
-                content:
-                    type: string
-        admin.v1.ChatgptUsageRes:
-            type: object
-            properties:
-                promptTokes:
-                    type: string
-                completionTokes:
-                    type: string
-                totalTokens:
-                    type: integer
-                    format: int64
-        admin.v1.CheckResponse:
-            type: object
-            properties:
-                success:
-                    type: boolean
-            description: 响应 - 检查是否处理成功
         admin.v1.CreateAdministratorReq:
             type: object
             properties:
@@ -1247,38 +945,6 @@ components:
                     type: string
                     description: 请求路径
             description: 请求 - API创建
-        admin.v1.CreateGptMessageReq:
-            type: object
-            properties:
-                model:
-                    type: string
-                    description: 模型
-                messages:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/admin.v1.ChatgptMessageReq'
-            description: 请求 - chathpt请求查询
-        admin.v1.CreateGptMessageRes:
-            type: object
-            properties:
-                id:
-                    type: string
-                object:
-                    type: string
-                created:
-                    type: integer
-                    format: int64
-                model:
-                    type: string
-                usage:
-                    $ref: '#/components/schemas/admin.v1.ChatgptUsageRes'
-                choices:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/admin.v1.ChatgptChoiceRes'
-                error:
-                    $ref: '#/components/schemas/admin.v1.ErrorMessageRes'
-            description: 响应 - chathpt请求查询
         admin.v1.CreateMenuReq:
             type: object
             properties:
@@ -1324,35 +990,6 @@ components:
                     type: string
                     description: 名称
             description: 请求 - 角色创建
-        admin.v1.CreateUserReq:
-            type: object
-            properties:
-                username:
-                    type: string
-                password:
-                    type: string
-                    description: 密码
-                status:
-                    type: boolean
-                    description: 状态
-                mobile:
-                    type: string
-                    description: 手机号
-                nickname:
-                    type: string
-                    description: 昵称
-                avatar:
-                    type: string
-                    description: 头像
-                wxOpenId:
-                    type: string
-                    description: 微信openId
-            description: 请求 - 创建
-        admin.v1.ErrorMessageRes:
-            type: object
-            properties:
-                message:
-                    type: string
         admin.v1.GetAdministratorListPageRes:
             type: object
             properties:
@@ -1444,19 +1081,6 @@ components:
                         type: string
                     description: 角色数组
             description: 响应 - 用户角色列表
-        admin.v1.GetUserListPageRes:
-            type: object
-            properties:
-                total:
-                    type: integer
-                    description: 总数
-                    format: int64
-                list:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/admin.v1.User'
-                    description: 列表
-            description: 响应 - 分页
         admin.v1.GetUsersForRoleRes:
             type: object
             properties:
@@ -1784,75 +1408,5 @@ components:
                     type: string
                     description: 名称
             description: 请求 - 角色更新
-        admin.v1.UpdateUserReq:
-            type: object
-            properties:
-                id:
-                    type: integer
-                    description: 主键id
-                    format: int64
-                username:
-                    type: string
-                    description: 用户名
-                password:
-                    type: string
-                    description: 密码
-                status:
-                    type: boolean
-                    description: 状态
-                mobile:
-                    type: string
-                    description: 手机号
-                nickname:
-                    type: string
-                    description: 昵称
-                avatar:
-                    type: string
-                    description: 头像
-                wxOpenId:
-                    type: string
-                    description: 微信openId
-            description: 请求 - 更新
-        admin.v1.User:
-            type: object
-            properties:
-                id:
-                    type: integer
-                    description: 主键id
-                    format: int64
-                username:
-                    type: string
-                    description: 名称
-                password:
-                    type: string
-                    description: 密码
-                salt:
-                    type: string
-                    description: 密码盐
-                status:
-                    type: boolean
-                    description: 状态
-                mobile:
-                    type: string
-                    description: 手机号
-                nickname:
-                    type: string
-                    description: 昵称
-                avatar:
-                    type: string
-                    description: 头像
-                wxOpenId:
-                    type: string
-                    description: 微信openId
-                createdAt:
-                    type: string
-                    description: 创建时间
-                updatedAt:
-                    type: string
-                    description: 更新时间
-                deletedAt:
-                    type: string
-                    description: 删除时间
-            description: 响应 - 示例信息
 tags:
     - name: Admin

@@ -8,11 +8,11 @@ import "google/protobuf/duration.proto";
 message Bootstrap {
   Env env = 1;
   Service service = 2;
-  Trace trace = 3;
-  Server server = 4;
-  Auth auth = 5;
-  Data data = 6;
-  Endpoint endpoint = 7;
+  Server server = 3;
+  Auth auth = 4;
+  Data data = 5;
+  Endpoint endpoint = 6;
+  JWT jwt = 7;
 }
 
 message Service {
@@ -39,17 +39,6 @@ message Server {
   GRPC grpc = 2;
 }
 
-message Registry {
-  message Etcd {
-    string address = 1;
-  }
-  Etcd etcd = 1;
-}
-
-message Trace {
-  string endpoint = 1;
-}
-
 message Auth {
   string service_key = 1;
   string api_key = 2;
@@ -72,8 +61,11 @@ message Endpoint {
   string administrator = 2;
   string authorization = 3;
   string log = 4;
-  string file = 5;
-  string notice = 6;
-  string ai = 7;
-  string user = 8;
+  string oss = 5;
+}
+
+message JWT {
+  string key = 1;
+  string issuer = 2;
+  google.protobuf.Duration expire = 3;
 }

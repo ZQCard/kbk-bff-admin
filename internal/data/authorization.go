@@ -4,18 +4,14 @@ import (
 	"context"
 
 	authorizationV1 "github.com/ZQCard/kbk-authorization/api/authorization/v1"
-	v1 "github.com/ZQCard/kbk-bff-admin/api/admin/v1"
+	v1 "github.com/ZQCard/kbk-bff-admin/api/bff-admin/v1"
 	"github.com/ZQCard/kbk-bff-admin/internal/conf"
+
 	"github.com/go-kratos/kratos/v2/log"
 	"golang.org/x/sync/singleflight"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	"github.com/go-kratos/kratos/v2/middleware/metadata"
-	"github.com/go-kratos/kratos/v2/middleware/recovery"
-	"github.com/go-kratos/kratos/v2/middleware/tracing"
-	"github.com/go-kratos/kratos/v2/registry"
 	"github.com/go-kratos/kratos/v2/transport/grpc"
-	tracesdk "go.opentelemetry.io/otel/sdk/trace"
 )
 
 type AuthorizationRepo struct {
@@ -32,17 +28,10 @@ func NewAuthorizationRepo(data *Data, logger log.Logger) *AuthorizationRepo {
 	}
 }
 
-func NewAuthorizationServiceClient(ac *conf.Auth, sr *conf.Endpoint, r registry.Discovery, tp *tracesdk.TracerProvider) authorizationV1.AuthorizationServiceClient {
+func NewAuthorizationServiceClient(ac *conf.Auth, sr *conf.Endpoint) authorizationV1.AuthorizationServiceClient {
 	conn, err := grpc.DialInsecure(
 		context.Background(),
 		grpc.WithEndpoint(sr.Authorization),
-		grpc.WithDiscovery(r),
-		grpc.WithMiddleware(
-			recovery.Recovery(),
-			tracing.Client(tracing.WithTracerProvider(tp)),
-			// 元信息
-			metadata.Client(),
-		),
 	)
 	if err != nil {
 		panic(err)
@@ -87,45 +76,24 @@ func (rp AuthorizationRepo) CreateRole(ctx context.Context, req *v1.CreateRoleRe
 	return res, nil
 }
 
-func (rp AuthorizationRepo) UpdateRole(ctx context.Context, req *v1.UpdateRoleReq) (*v1.CheckResponse, error) {
-	reply, err := rp.data.authorizationClient.UpdateRole(ctx, &authorizationV1.UpdateRoleReq{
+func (rp AuthorizationRepo) UpdateRole(ctx context.Context, req *v1.UpdateRoleReq) (*emptypb.Empty, error) {
+	return rp.data.authorizationClient.UpdateRole(ctx, &authorizationV1.UpdateRoleReq{
 		Id:   req.Id,
 		Name: req.Name,
 	})
-	if err != nil {
-		return nil, err
-	}
-	res := &v1.CheckResponse{
-		Success: reply.Success,
-	}
-	return res, nil
 }
 
-func (rp AuthorizationRepo) DeleteRole(ctx context.Context, req *v1.IdReq) (*v1.CheckResponse, error) {
-	reply, err := rp.data.authorizationClient.DeleteRole(ctx, &authorizationV1.DeleteRoleReq{
+func (rp AuthorizationRepo) DeleteRole(ctx context.Context, req *v1.IdReq) (*emptypb.Empty, error) {
+	return rp.data.authorizationClient.DeleteRole(ctx, &authorizationV1.DeleteRoleReq{
 		Id: req.Id,
 	})
-	if err != nil {
-		return nil, err
-	}
-	res := &v1.CheckResponse{
-		Success: reply.Success,
-	}
-	return res, nil
 }
 
-func (rp AuthorizationRepo) SetRolesForUser(ctx context.Context, req *v1.SetRolesForUserReq) (*v1.CheckResponse, error) {
-	reply, err := rp.data.authorizationClient.SetRolesForUser(ctx, &authorizationV1.SetRolesForUserReq{
+func (rp AuthorizationRepo) SetRolesForUser(ctx context.Context, req *v1.SetRolesForUserReq) (*emptypb.Empty, error) {
+	return rp.data.authorizationClient.SetRolesForUser(ctx, &authorizationV1.SetRolesForUserReq{
 		Username: req.Username,
 		Roles:    req.Roles,
 	})
-	if err != nil {
-		return nil, err
-	}
-	res := &v1.CheckResponse{
-		Success: reply.Success,
-	}
-	return res, nil
 }
 
 func (rp AuthorizationRepo) GetRolesForUser(ctx context.Context, req *v1.GetRolesForUserReq) (*v1.GetRolesForUserRes, error) {
@@ -154,31 +122,17 @@ func (rp AuthorizationRepo) GetUsersForRole(ctx context.Context, req *v1.RoleNam
 	return res, nil
 }
 
-func (rp AuthorizationRepo) DeleteRoleForUser(ctx context.Context, req *v1.DeleteRoleForUserReq) (*v1.CheckResponse, error) {
-	reply, err := rp.data.authorizationClient.DeleteRoleForUser(ctx, &authorizationV1.DeleteRoleForUserReq{
+func (rp AuthorizationRepo) DeleteRoleForUser(ctx context.Context, req *v1.DeleteRoleForUserReq) (*emptypb.Empty, error) {
+	return rp.data.authorizationClient.DeleteRoleForUser(ctx, &authorizationV1.DeleteRoleForUserReq{
 		Username: req.Username,
 		Role:     req.Role,
 	})
-	if err != nil {
-		return nil, err
-	}
-	res := &v1.CheckResponse{
-		Success: reply.Success,
-	}
-	return res, nil
 }
 
-func (rp AuthorizationRepo) DeleteRolesForUser(ctx context.Context, req *v1.DeleteRolesForUserReq) (*v1.CheckResponse, error) {
-	reply, err := rp.data.authorizationClient.DeleteRolesForUser(ctx, &authorizationV1.DeleteRolesForUserReq{
+func (rp AuthorizationRepo) DeleteRolesForUser(ctx context.Context, req *v1.DeleteRolesForUserReq) (*emptypb.Empty, error) {
+	return rp.data.authorizationClient.DeleteRolesForUser(ctx, &authorizationV1.DeleteRolesForUserReq{
 		Username: req.Username,
 	})
-	if err != nil {
-		return nil, err
-	}
-	res := &v1.CheckResponse{
-		Success: reply.Success,
-	}
-	return res, nil
 }
 
 func (rp AuthorizationRepo) GetPolicies(ctx context.Context, req *v1.RoleNameReq) (*v1.GetPoliciesRes, error) {
@@ -201,7 +155,7 @@ func (rp AuthorizationRepo) GetPolicies(ctx context.Context, req *v1.RoleNameReq
 	return res, nil
 }
 
-func (rp AuthorizationRepo) UpdatePolicies(ctx context.Context, req *v1.UpdatePoliciesReq) (*v1.CheckResponse, error) {
+func (rp AuthorizationRepo) UpdatePolicies(ctx context.Context, req *v1.UpdatePoliciesReq) (*emptypb.Empty, error) {
 	var policyRules []*authorizationV1.PolicyRules
 	for _, v := range req.PolicyRules {
 		policyRules = append(policyRules, &authorizationV1.PolicyRules{
@@ -210,17 +164,10 @@ func (rp AuthorizationRepo) UpdatePolicies(ctx context.Context, req *v1.UpdatePo
 		})
 	}
 
-	reply, err := rp.data.authorizationClient.UpdatePolicies(ctx, &authorizationV1.UpdatePoliciesReq{
+	return rp.data.authorizationClient.UpdatePolicies(ctx, &authorizationV1.UpdatePoliciesReq{
 		Role:        req.Role,
 		PolicyRules: policyRules,
 	})
-	if err != nil {
-		return nil, err
-	}
-	res := &v1.CheckResponse{
-		Success: reply.Success,
-	}
-	return res, nil
 }
 
 func (rp AuthorizationRepo) GetApiAll(ctx context.Context) (*v1.GetApiAllRes, error) {
@@ -299,37 +246,20 @@ func (rp AuthorizationRepo) CreateApi(ctx context.Context, req *v1.CreateApiReq)
 	return res, nil
 }
 
-func (rp AuthorizationRepo) UpdateApi(ctx context.Context, req *v1.UpdateApiReq) (*v1.CheckResponse, error) {
-	reply, err := rp.data.authorizationClient.UpdateApi(ctx, &authorizationV1.UpdateApiReq{
+func (rp AuthorizationRepo) UpdateApi(ctx context.Context, req *v1.UpdateApiReq) (*emptypb.Empty, error) {
+	return rp.data.authorizationClient.UpdateApi(ctx, &authorizationV1.UpdateApiReq{
 		Id:     req.Id,
 		Group:  req.Group,
 		Name:   req.Name,
 		Path:   req.Path,
 		Method: req.Method,
 	})
-	if err != nil {
-		return nil, err
-	}
-	if err != nil {
-		return nil, err
-	}
-	response := &v1.CheckResponse{
-		Success: reply.Success,
-	}
-	return response, nil
 }
 
-func (rp AuthorizationRepo) DeleteApi(ctx context.Context, req *v1.IdReq) (*v1.CheckResponse, error) {
-	reply, err := rp.data.authorizationClient.DeleteApi(ctx, &authorizationV1.DeleteApiReq{
+func (rp AuthorizationRepo) DeleteApi(ctx context.Context, req *v1.IdReq) (*emptypb.Empty, error) {
+	return rp.data.authorizationClient.DeleteApi(ctx, &authorizationV1.DeleteApiReq{
 		Id: req.Id,
 	})
-	if err != nil {
-		return nil, err
-	}
-	res := &v1.CheckResponse{
-		Success: reply.Success,
-	}
-	return res, nil
 }
 
 func (rp AuthorizationRepo) GetMenuAll(ctx context.Context) (*v1.GetMenuTreeRes, error) {
@@ -516,7 +446,7 @@ func (rp AuthorizationRepo) CreateMenu(ctx context.Context, req *v1.CreateMenuRe
 	return res, nil
 }
 
-func (rp AuthorizationRepo) UpdateMenu(ctx context.Context, req *v1.UpdateMenuReq) (*v1.CheckResponse, error) {
+func (rp AuthorizationRepo) UpdateMenu(ctx context.Context, req *v1.UpdateMenuReq) (*emptypb.Empty, error) {
 	var btns []*authorizationV1.MenuBtn
 	for _, btn := range req.MenuBtns {
 		btns = append(btns, &authorizationV1.MenuBtn{
@@ -527,7 +457,8 @@ func (rp AuthorizationRepo) UpdateMenu(ctx context.Context, req *v1.UpdateMenuRe
 			Identifier:  btn.Identifier,
 		})
 	}
-	reply, err := rp.data.authorizationClient.UpdateMenu(ctx, &authorizationV1.UpdateMenuReq{
+
+	return rp.data.authorizationClient.UpdateMenu(ctx, &authorizationV1.UpdateMenuReq{
 		Id:        req.Id,
 		Name:      req.Name,
 		Path:      req.Path,
@@ -540,26 +471,12 @@ func (rp AuthorizationRepo) UpdateMenu(ctx context.Context, req *v1.UpdateMenuRe
 		Icon:      req.Icon,
 		MenuBtns:  btns,
 	})
-	if err != nil {
-		return nil, err
-	}
-	res := &v1.CheckResponse{
-		Success: reply.Success,
-	}
-	return res, nil
 }
 
-func (rp AuthorizationRepo) DeleteMenu(ctx context.Context, req *v1.IdReq) (*v1.CheckResponse, error) {
-	reply, err := rp.data.authorizationClient.DeleteMenu(ctx, &authorizationV1.IdReq{
+func (rp AuthorizationRepo) DeleteMenu(ctx context.Context, req *v1.IdReq) (*emptypb.Empty, error) {
+	return rp.data.authorizationClient.DeleteMenu(ctx, &authorizationV1.IdReq{
 		Id: req.Id,
 	})
-	if err != nil {
-		return nil, err
-	}
-	res := &v1.CheckResponse{
-		Success: reply.Success,
-	}
-	return res, nil
 }
 
 func (rp AuthorizationRepo) GetRoleMenuTree(ctx context.Context, req *v1.RoleNameReq) (*v1.GetMenuTreeRes, error) {
@@ -659,18 +576,11 @@ func (rp AuthorizationRepo) GetRoleMenu(ctx context.Context, req *v1.RoleNameReq
 	return res, nil
 }
 
-func (rp AuthorizationRepo) SetRoleMenu(ctx context.Context, req *v1.SetRoleMenuReq) (*v1.CheckResponse, error) {
-	reply, err := rp.data.authorizationClient.SaveRoleMenu(ctx, &authorizationV1.SaveRoleMenuReq{
+func (rp AuthorizationRepo) SetRoleMenu(ctx context.Context, req *v1.SetRoleMenuReq) (*emptypb.Empty, error) {
+	return rp.data.authorizationClient.SaveRoleMenu(ctx, &authorizationV1.SaveRoleMenuReq{
 		RoleId:  req.RoleId,
 		MenuIds: req.MenuIds,
 	})
-	if err != nil {
-		return nil, err
-	}
-	res := &v1.CheckResponse{
-		Success: reply.Success,
-	}
-	return res, nil
 }
 
 func (rp AuthorizationRepo) GetRoleMenuBtn(ctx context.Context, req *v1.GetRoleMenuBtnReq) (*v1.GetRoleMenuBtnRes, error) {
@@ -700,17 +610,10 @@ func (rp AuthorizationRepo) GetRoleMenuBtn(ctx context.Context, req *v1.GetRoleM
 	return res, nil
 }
 
-func (rp AuthorizationRepo) SetRoleMenuBtn(ctx context.Context, req *v1.SetRoleMenuBtnReq) (*v1.CheckResponse, error) {
-	reply, err := rp.data.authorizationClient.SaveRoleMenuBtn(ctx, &authorizationV1.SaveRoleMenuBtnReq{
+func (rp AuthorizationRepo) SetRoleMenuBtn(ctx context.Context, req *v1.SetRoleMenuBtnReq) (*emptypb.Empty, error) {
+	return rp.data.authorizationClient.SaveRoleMenuBtn(ctx, &authorizationV1.SaveRoleMenuBtnReq{
 		RoleId:     req.RoleId,
 		MenuId:     req.MenuId,
 		MenuBtnIds: req.MenuBtnIds,
 	})
-	if err != nil {
-		return nil, err
-	}
-	res := &v1.CheckResponse{
-		Success: reply.Success,
-	}
-	return res, nil
 }

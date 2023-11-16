@@ -8,6 +8,6 @@ import (
 
 func NewLogger() log.Logger {
 	logrus.SetLevel(logrus.DebugLevel)
-	logrus.SetFormatter(&logrus.JSONFormatter{PrettyPrint: true})
+	logrus.SetFormatter(&logrus.JSONFormatter{PrettyPrint: false})
 	return ktrus.NewLogger(logrus.StandardLogger())
 }
