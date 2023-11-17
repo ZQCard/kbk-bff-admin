@@ -1,4 +1,4 @@
-# Charging Station
+# KBK管理后台BFF
 
 本项目基于 [kratos框架](https://github.com/go-kratos/kratos) 搭建基础微服务项目，开发各种独立服务,bff层作为入口，整合各个服务。
 
